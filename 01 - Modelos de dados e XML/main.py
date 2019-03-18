@@ -12,22 +12,22 @@ FILENAME_BHR = PATH_FOLDER + 'herois_bad.csv'  # bad heroes
 def heroes_xml2csv(heroes, filename_csv):
 	with open(filename_csv, 'w') as csv_file:
 		spamwriter = csv.writer(csv_file, delimiter=',')	
-		for hero in heroes:
-			spamwriter.writerow(hero)
+		for i in range(0, len(heroes)):
+			spamwriter.writerow(list(heroes[i].values()))
 	return
 
 tree = ET.parse(FILENAME_IN)  
 universe = tree.getroot()
 
-heroes = list(list())
+heroes = []
 for hero in universe:
-	heroes.append(list())
-	heroes[-1].append(hero.attrib['id']) # add id
-	for elem in hero:
-		heroes[-1].append(elem.text) # add elements		
+    heroes.append(dict())
+    heroes[-1]['id'] = hero.attrib['id'] # add id
+    for elem in hero:
+        heroes[-1][str(elem.tag)] = elem.text # add elements
 
-good_heroes = [hero for hero in heroes if 'Good' in hero]
-bad_heroes = [hero for hero in heroes if 'Bad' in hero]
+good_heroes = [heroes[i] for i in range(0, len(heroes)) if heroes[i]['alignment'] == 'Good']
+bad_heroes = [heroes[i] for i in range(0, len(heroes)) if heroes[i]['alignment'] == 'Bad']
 
 heroes_xml2csv(heroes, FILENAME_HR)
 heroes_xml2csv(good_heroes, FILENAME_GHR)
