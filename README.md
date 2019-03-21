@@ -1,10 +1,6 @@
 # Estrutura básica do trabalho de CSB30 - Introdução A Bancos De Dados
 
-Modifique este aquivo README.md com as informações adequadas sobre o seu grupo.
-
 ## Integrantes do grupo
-
-Liste o nome, RA e o usuário GitLab para cada integrante do grupo.
 
 - Giovanni Forastieri, 1904990, @NEOGIGIO
 - Ian Douglas Almeida Queros, 1905015, @ianqueros

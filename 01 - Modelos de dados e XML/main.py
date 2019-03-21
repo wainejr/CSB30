@@ -16,6 +16,21 @@ def heroes_xml2csv(heroes, filename_csv):
 			spamwriter.writerow(list(heroes[i].values()))
 	return
 
+def findAvgWeight(heroes):
+	avgw = 0
+	for hero in heroes:
+		avgw += float(hero["weight_kg"])
+	avgw /= len(heroes)
+	return avgw
+
+def findIMC(heroes, hero_name):
+	for hero in heroes:
+		if hero['name'] == hero_name:
+			hero2save = hero
+			break
+	imc = float(hero2save["weight_kg"]) / (float(hero2save["height_m"]) ** 2)
+	return imc
+
 tree = ET.parse(FILENAME_IN)  
 universe = tree.getroot()
 
@@ -28,6 +43,12 @@ for hero in universe:
 
 good_heroes = [heroes[i] for i in range(0, len(heroes)) if heroes[i]['alignment'] == 'Good']
 bad_heroes = [heroes[i] for i in range(0, len(heroes)) if heroes[i]['alignment'] == 'Bad']
+
+total_h = len(heroes)
+print("{}% good heroes / {}% bad heroes"
+	.format(round(len(good_heroes)*100/total_h, 2), round(len(bad_heroes)*100/total_h, 2)))
+print("Average weight:{}".format(round(findAvgWeight(heroes), 2)))
+print("Hulk IMC:{}".format(findIMC(heroes, 'Hulk')))
 
 heroes_xml2csv(heroes, FILENAME_HR)
 heroes_xml2csv(good_heroes, FILENAME_GHR)
