@@ -1,0 +1,17 @@
+Descrição do mini-mundo
+
+Nossa rede social deve registrar as pessoas da turma (usuários), com um login único, nome completo e cidade natal. As pessoas podem registrar seus conhecidos da turma na rede social. Pessoas podem bloquear outras pessoas (para que as bloqueadas não possam cadastrá-las como conhecidos). É preciso armazenar a razão para cada bloqueio.
+
+ 
+
+A rede social também registra "artistas musicais” e filmes dos quais as pessoas gostam. Artistas musicais englobam cantores(as), duplas e grupos (bandas, orquestras, etc). Artistas musicais possuem nome artístico (ex: Xuxa, Sandi e Júnior, Legião Urbana etc.), identificador único, país e gênero musical. Grupos possuem múltiplos músicos. Um cantor(a) também possui um músico correspondente (e.g. cantora Xuxa e musicista Maria da Graça Meneghel) enquanto uma dupla possui dois músicos correspondentes. Para músicos, precisamos registrar nome real (ex: Maria da Graça Meneghel), estilo musical e data de nascimento. 
+
+
+Filmes possuem nome, identificador (string única) e data de lançamento. Cada filme tem um diretor e um diretor pode dirigir vários filmes ao longo da carreira. Um filme também possui atores. Tanto atores quanto diretores possuem identificador (string única), telefone e endereço. Um ator pode ser também diretor. Atores e diretores possuem um salário associado ao filme em que participam. Um filme é classificado em uma categoria (ex: ação, documentário, ficção etc.). Categorias são representadas em uma hierarquia (ex. ação é subcategoria de ficção).
+
+ 
+
+Pessoas podem curtir artistas musicais e filmes. As pessoas atribuem uma nota (inteiro de 1 a 5) a cada artista musical ou filme, indicando o quanto gosta do item (1 = pouco, 5 = muito).
+
+
+Implemente um modelo ER contendo apenas os conceitos descritos acima. Caso alguma informação dada não seja suficiente para tomar uma decisão, basei-se em casos do mundo real.
