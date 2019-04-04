@@ -1,4 +1,4 @@
-# Relational Model
+# Logical Model
 
 Obs.: **bold are primary keys**
 
