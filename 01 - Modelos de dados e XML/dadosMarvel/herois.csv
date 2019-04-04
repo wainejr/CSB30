@@ -1,12 +1,12 @@
-3,1,Male,3,76,4,USA,4,1,Good,1,4,Spider Man,2
-5,6,Male,6,103,6,USA,4,20,Neutral,2,6,Iron Man,2
-3,5,Male,7,635,6,USA,4,18,Neutral,3,7,Hulk,2
-2,1,Male,4,88,2,Canada,7,3,Good,4,4,Wolverine,2
-7,6,Male,6,290,2,Norway,4,5,Good,5,7,Thor,2
-3,3,Male,4,175,4,USA,3,91,Bad,6,4,Green Goblin,2
-5,6,Male,4,86,6,Germany,4,11,Neutral,7,3,Magneto,2
-7,6,Male,6,447,6,Titan,4,47,Bad,8,7,Thanos,2
-7,6,Male,6,238,5,Jotunheim,3,32,Bad,9,5,Loki,2
-5,6,Male,6,188,6,Latveria,4,19,Bad,10,4,Doctor Doom,2
-7,7,Female,7,52,3,USA,4,8,Good,11,2,Jean Greay,2
-7,7,Female,7,54,7,USA,7,4,Good,12,7,Rogue,2
+1,Spider Man,1,Good,Male,2,76,USA,4,4,3,3,1,4
+2,Iron Man,20,Neutral,Male,2,103,USA,6,6,5,6,6,4
+3,Hulk,18,Neutral,Male,2,635,USA,6,7,3,7,5,4
+4,Wolverine,3,Good,Male,2,88,Canada,2,4,2,4,1,7
+5,Thor,5,Good,Male,2,290,Norway,2,7,7,6,6,4
+6,Green Goblin,91,Bad,Male,2,175,USA,4,4,3,4,3,3
+7,Magneto,11,Neutral,Male,2,86,Germany,6,3,5,4,6,4
+8,Thanos,47,Bad,Male,2,447,Titan,6,7,7,6,6,4
+9,Loki,32,Bad,Male,2,238,Jotunheim,5,5,7,6,6,3
+10,Doctor Doom,19,Bad,Male,2,188,Latveria,6,4,5,6,6,4
+11,Jean Greay,8,Good,Female,2,52,USA,3,2,7,7,7,4
+12,Rogue,4,Good,Female,2,54,USA,7,7,7,7,7,7
