@@ -11,10 +11,9 @@ CREATE TABLE blocks
     PRIMARY KEY (user_blocking, user_blocked));
 
 CREATE TABLE friends
-    (user_blocking TEXT NOT NULL REFERENCES users(login),
-    user_blocked TEXT NOT NULL REFERENCES users(login),
-    reason TEXT NOT NULL,
-    PRIMARY KEY (user_blocking, user_blocked));
+    (user_1 TEXT NOT NULL REFERENCES users(login),
+    user_2 TEXT NOT NULL REFERENCES users(login),
+    PRIMARY KEY (user_1, user_2));
 
 CREATE TABLE people
     (name TEXT NOT NULL,
@@ -71,6 +70,7 @@ CREATE TABLE groups
 
 CREATE TABLE singer
     (musical_artist INTEGER NOT NULL REFERENCES musicalArtists(id),
+    musician TEXT NOT NULL REFERENCES musicians(name)
     PRIMARY KEY (musical_artist));
 
 CREATE TABLE duo
@@ -92,3 +92,80 @@ CREATE TABLE likesArtist
     musical_artist INTEGER NOT NULL REFERENCES musicalArtists(id),
     rating INTEGER NOT NULL,
     PRIMARY KEY (user_likes, musical_artist));
+
+INSERT INTO musicians VALUES ('Julian Casablancas', 'Rock', 23081978);
+INSERT INTO musicians VALUES ('Nick Valensi', 'Rock', 16011981);
+INSERT INTO musicians VALUES ('Nickolai Fraiture', 'Rock', 13111978);
+
+INSERT INTO musicians VALUES ('Kanye West', 'Rap', 08061977);
+INSERT INTO musicians VALUES ('Kid Cudi', 'Rap', 30011984);
+
+INSERT INTO musicians VALUES ('Ethan Kath', 'Synthpop', 25121982);
+INSERT INTO musicians VALUES ('Alice Glass', 'Synthpop', 23081988);
+
+INSERT INTO musicians VALUES ('Guy-Manuel de Homem-Christo', 'Eletronica', 08021974);
+INSERT INTO musicians VALUES ('Thomas Bangalter', 'Eletronica', 03011975);
+
+INSERT INTO musicians VALUES ('Marcelo de Souza Camelo', 'MPB', 04021978);
+INSERT INTO musicians VALUES ('Rodrigo Lins Martins', 'MPB', 23011979);
+INSERT INTO musicians VALUES ('Rodrigo Amarante de Castro Neves', 'MPB', 06091976);
+INSERT INTO musicians VALUES ('Bruno Medina', 'MPB', 10081978);
+
+INSERT INTO musicians VALUES ('Mallu Magalhaes', 'MPB', 29081992);
+INSERT INTO musicians VALUES ('Fred Pinto Ferreira', 'MPB', 12051983);
+
+INSERT INTO musicians VALUES ('Jahseh Dwayne Ricardo Onfroy', 'Trap', 23011998);
+
+INSERT INTO musicians VALUES ('Elizabeth Anne Harris', 'Experimental', 15031980);
+
+INSERT INTO musicians VALUES ('William Bevan', 'Eletronica', 10101979);
+
+INSERT INTO musicalArtists VALUES (123456, 'The Strokes', 'USA', 'Rock');
+INSERT INTO musicalArtists VALUES (123457, 'Kids See Ghosts', 'USA', 'Rap');
+INSERT INTO musicalArtists VALUES (123458, 'Crystal Castles', 'Canada', 'Synthpop');
+INSERT INTO musicalArtists VALUES (123459, 'Daft Punk', 'Franca', 'Eletronica');
+INSERT INTO musicalArtists VALUES (123460, 'Los Hermanos', 'Brasil', 'MPB');
+INSERT INTO musicalArtists VALUES (123461, 'Banda do Mar', 'Brasil', 'MPB');
+INSERT INTO musicalArtists VALUES (123462, 'XXXTentacion', 'USA', 'Trap');
+INSERT INTO musicalArtists VALUES (123463, 'Grouper', 'USA', 'Experimental');
+INSERT INTO musicalArtists VALUES (123464, 'Burial', 'Inglaterra', 'Eletronica');
+
+INSERT INTO singer VALUES (123463, 'Elizabeth Anne Harris');
+INSERT INTO singer VALUES (123464, 'William Bevan');
+
+INSERT INTO groups VALUES (123456);
+INSERT INTO groups VALUES (123460);
+INSERT INTO groups VALUES (123461);
+INSERT INTO duo VALUES (123457);
+INSERT INTO duo VALUES (123458);
+INSERT INTO duo VALUES (123459);
+
+INSERT INTO groupHas VALUES ('Julian Casablancas', 123456);
+INSERT INTO groupHas VALUES ('Nick Valensi', 123456);
+INSERT INTO groupHas VALUES ('Nickolai Fraiture', 123456);
+
+INSERT INTO groupHas VALUES ('Marcelo de Souza Camelo', 123460);
+INSERT INTO groupHas VALUES ('Rodrigo Lins Martins', 123460);
+INSERT INTO groupHas VALUES ('Rodrigo Amarante de Castro Neves', 123460);
+INSERT INTO groupHas VALUES ('Bruno Medina', 123460);
+
+INSERT INTO groupHas VALUES ('Marcelo de Souza Camelo', 123461);
+INSERT INTO groupHas VALUES ('Mallu Magalhaes', 123461);
+INSERT INTO groupHas VALUES ('Fred Pinto Ferreira', 123461);
+
+INSERT INTO duoHas VALUES ('Kanye West', 123457);
+INSERT INTO duoHas VALUES ('Kid Cudi', 123457);
+
+INSERT INTO duoHas VALUES ('Ethan Kath', 123458);
+INSERT INTO duoHas VALUES ('Alice Glass', 123458);
+
+INSERT INTO duoHas VALUES ('Guy-Manuel de Homem-Christo', 123459);
+INSERT INTO duoHas VALUES ('Thomas Bangalter', 123459);
+
+INSERT INTO likesArtist VALUES (134, 123457, 5);
+INSERT INTO likesArtist VALUES (256, 123458, 4);
+INSERT INTO likesArtist VALUES (379, 123459, 3);
+
+INSERT INTO likesArtist VALUES (134, 123460, 5);
+INSERT INTO likesArtist VALUES (256, 123461, 5);
+INSERT INTO likesArtist VALUES (379, 123462, 4);
