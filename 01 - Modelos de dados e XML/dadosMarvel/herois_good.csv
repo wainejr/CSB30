@@ -1,5 +1,5 @@
-3,1,Male,3,76,4,USA,4,1,Good,1,4,Spider Man,2
-2,1,Male,4,88,2,Canada,7,3,Good,4,4,Wolverine,2
-7,6,Male,6,290,2,Norway,4,5,Good,5,7,Thor,2
-7,7,Female,7,52,3,USA,4,8,Good,11,2,Jean Greay,2
-7,7,Female,7,54,7,USA,7,4,Good,12,7,Rogue,2
+1,Spider Man,1,Good,Male,2,76,USA,4,4,3,3,1,4
+4,Wolverine,3,Good,Male,2,88,Canada,2,4,2,4,1,7
+5,Thor,5,Good,Male,2,290,Norway,2,7,7,6,6,4
+11,Jean Greay,8,Good,Female,2,52,USA,3,2,7,7,7,4
+12,Rogue,4,Good,Female,2,54,USA,7,7,7,7,7,7
