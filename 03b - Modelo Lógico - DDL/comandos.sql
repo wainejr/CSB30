@@ -94,57 +94,58 @@ CREATE TABLE likesArtist
     PRIMARY KEY (user_likes, musical_artist));
 
 
-INSERT INTO users VALUES ("134", "Amanda", "Porto Alegre");
-INSERT INTO users VALUES ("256", "Mario", "Rio de Janeiro");
-INSERT INTO users VALUES ("379", "José", "Curitiba");
+INSERT INTO users VALUES ('134', 'Amanda', 'Porto Alegre');
+INSERT INTO users VALUES ('256', 'Mario', 'Rio de Janeiro');
+INSERT INTO users VALUES ('379', 'José', 'Curitiba');
+INSERT INTO users VALUES ('570', 'Bruna', 'Brasilia');
+
+INSERT INTO people VALUES ('Francis Ford Coppola', 12930434, 'New York');
+INSERT INTO people VALUES ('David Fincher', 39450434, 'Texas');
+INSERT INTO people VALUES ('Christopher Nolan', 50630314, 'Washington');
+INSERT INTO people VALUES ('Brad Pitt', 86549259, 'California');
+INSERT INTO people VALUES ('Edward Norton', 10283849, 'New York');
+INSERT INTO people VALUES ('Al Pacino', 29304819, 'Alabama');
     
-INSERT INTO movies VALUES (0, "O Poderoso Chefão", 85013246, "Francis Ford Coppola", 100000);
-INSERT INTO movies VALUES (1, "Batman: O Cavaleiro das Trevas", 1216421246, "Christopher Nolan", 70000);
-INSERT INTO movies VALUES (2, "Clube da Luta", 941237246, "David Fincher", 50000);
+INSERT INTO movies VALUES (0, 'O Poderoso Chefão', 85013246, 'Francis Ford Coppola', 100000);
+INSERT INTO movies VALUES (1, 'Batman: O Cavaleiro das Trevas', 1216421246, 'Christopher Nolan', 70000);
+INSERT INTO movies VALUES (2, 'Clube da Luta', 941237246, 'David Fincher', 50000);
 
-INSERT INTO people VALUES ("Francis Ford Coppola", 1293043456, "New York");
-INSERT INTO people VALUES ("David Fincher", 3945043456, "Texas");
-INSERT INTO people VALUES ("Christopher Nolan", 5063031469, "Washington");
-INSERT INTO people VALUES ("Brad Pitt", 8654925925, "California");
-INSERT INTO people VALUES ("Edward Norton", 1028384959, "New York");
-INSERT INTO people VALUES ("Al Pacino", 2930481920, "Alabama");
+INSERT INTO act VALUES ('Edward Norton', 2, 300000);
+INSERT INTO act VALUES ('Brad Pitt', 2, 350000);
+INSERT INTO act VALUES ('Christopher Nolan', 1, 400000);
+INSERT INTO act VALUES ('Francis Ford Coppola', 0, 200000);
+INSERT INTO act VALUES ('David Fincher', 2, 330000);
+INSERT INTO act VALUES ('Al Pacino', 0, 500000);
 
-INSERT INTO act VALUES ("Edward Norton", 2, 300000);
-INSERT INTO act VALUES ("Brad Pitt", 2, 350000);
-INSERT INTO act VALUES ("Christopher Nolan", 1, 400000);
-INSERT INTO act VALUES ("Francis Ford Coppola", 0, 200000);
-INSERT INTO act VALUES ("David Fincher", 2, 330000);
-INSERT INTO act VALUES ("Al Pacino", 0, 500000);
+INSERT INTO categories VALUES ('Longa Metragem', NULL);
+INSERT INTO categories VALUES ('Drama', 'Longa Metragem');
+INSERT INTO categories VALUES ('Ação', 'Longa Metragem');
 
-INSERT INTO categories VALUES ("Longa Metragem", NULL);
-INSERT INTO categories VALUES ("Drama", "Longa Metragem");
-INSERT INTO categories VALUES ("Ação", "Longa Metragem");
+INSERT INTO incategory VALUES (1, 'Longa Metragem');
+INSERT INTO incategory VALUES (1, 'Drama');
+INSERT INTO incategory VALUES (1, 'Ação');
+INSERT INTO incategory VALUES (0, 'Drama');
+INSERT INTO incategory VALUES (2, 'Drama');
+INSERT INTO incategory VALUES (2, 'Ação');
 
-INSERT INTO incategory VALUES (1, "Longa Metragem");
-INSERT INTO incategory VALUES (1, "Drama");
-INSERT INTO incategory VALUES (1, "Ação");
-INSERT INTO incategory VALUES (0, "Drama");
-INSERT INTO incategory VALUES (2, "Drama");
-INSERT INTO incategory VALUES (2, "Ação");
-
-INSERT INTO likesMovie VALUES ("134", 0, 10);
-INSERT INTO likesMovie VALUES ("134", 1, 9);
-INSERT INTO likesMovie VALUES ("134", 2, 8);
-INSERT INTO likesMovie VALUES ("256", 0, 8);
-INSERT INTO likesMovie VALUES ("256", 0, 7);
-INSERT INTO likesMovie VALUES ("379", 1, 10);
+INSERT INTO likesMovie VALUES ('134', 0, 10);
+INSERT INTO likesMovie VALUES ('134', 1, 9);
+INSERT INTO likesMovie VALUES ('134', 2, 8);
+INSERT INTO likesMovie VALUES ('256', 0, 8);
+INSERT INTO likesMovie VALUES ('256', 1, 7);
+INSERT INTO likesMovie VALUES ('379', 1, 10);
 
 
-INSERT INTO blocks VALUES ("134", "256", "I don't like him");
-INSERT INTO blocks VALUES ("256", "134", "He blocked me");
-INSERT INTO blocks VALUES ("134", "379", "I don't like him");
-INSERT INTO blocks VALUES ("379", "134", "He blocked me");
-INSERT INTO blocks VALUES ("379", "256", "I don't like him");
-INSERT INTO blocks VALUES ("256", "379", "He blocked me");
+INSERT INTO blocks VALUES ('134', '256', 'I dont like him');
+INSERT INTO blocks VALUES ('570', '134', 'He blocked me');
+INSERT INTO blocks VALUES ('256', '379', 'I dont like him');
+INSERT INTO blocks VALUES ('379', '134', 'He blocked me');
+INSERT INTO blocks VALUES ('570', '256', 'I dont like him');
+INSERT INTO blocks VALUES ('570', '379', 'He blocked me');
 
-INSERT INTO friends VALUES ("134", "256");
-INSERT INTO friends VALUES ("256", "134");
-INSERT INTO friends VALUES ("134", "379");
-INSERT INTO friends VALUES ("379", "134");
-INSERT INTO friends VALUES ("379", "256");
-INSERT INTO friends VALUES ("256", "379");
+INSERT INTO friends VALUES ('134', '256');
+INSERT INTO friends VALUES ('570', '134');
+INSERT INTO friends VALUES ('256', '379');
+INSERT INTO friends VALUES ('379', '134');
+INSERT INTO friends VALUES ('570', '256');
+INSERT INTO friends VALUES ('570', '379');
