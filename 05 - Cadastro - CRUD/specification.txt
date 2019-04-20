@@ -1,0 +1,16 @@
+Descrição
+
+
+Desenvolva uma aplicação com interface CRUD (create, read, update and delete) para cadastramento, edição e listagem de pessoas na rede social. A aplicação pode ser desenvolvida em texto puro, escrevendo no terminal.
+
+
+A interface deve permitir o cadastro de todos os campos descritos no seu modelo. Os dados fornecidos em XML devem estar completamente carregados no banco usado pela aplicação. A interface de edição deve permitir a edição de dados das pessoas já cadastradas bem como a inclusão de novas pessoas.
+
+
+Para cadastramento de conhecidos, a interface deve listar todos os usuários contidos na rede. Não é preciso implementar rotinas para alteração ou exclusão de relacionamentos já cadastrados.
+
+
+A página principal da aplicação deve oferecer duas opções: cadastro de pessoa e listagem de pessoas. Após listar as pessoas, a aplicação deve oferecer a opção de apagar ou editar uma pessoa.
+
+
+Os grupos podem implementar a tarefa com interface grafica se desejarem. 
