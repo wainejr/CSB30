@@ -3,12 +3,14 @@ from crud_commands import *
 def parse_input(inp):	
 	inp = inp.split(" ", 1)
 	if(inp[0] == inp[-1]): # if the input has no arguments
-		return [inp[0]]	
-	tmp = (inp[1].split(';'))
+		return [inp[0]]
+	tmp = inp[1].split(';')
 	args = [i.strip() for i in tmp]
 	p_inp = [inp[0]]
-	for i in args:
-		p_inp.append(i)
+	for arg in args:
+		p_inp.append(arg)
+		p_inp.append(';') # insert ';' between arguments
+	p_inp.pop()
 	return (p_inp)
 
 def check_format(inp):
