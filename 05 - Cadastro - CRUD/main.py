@@ -1,5 +1,16 @@
 from crud_commands import *
 
+def parse_input(inp):	
+	inp = inp.split(" ", 1)
+	if(inp[0] == inp[-1]): # if the input has no arguments
+		return [inp[0]]	
+	tmp = (inp[1].split(';'))
+	args = [i.strip() for i in tmp]
+	p_inp = [inp[0]]
+	for i in args:
+		p_inp.append(i)
+	return (p_inp)
+
 def check_format(inp):
 	try:
 		if(inp[0] in CMDS[:]['cmd']):
@@ -15,8 +26,27 @@ def check_format(inp):
 
 if __name__ == '__main__':
 	inp = ''
-	while(not(inp == QUIT['cmd']):
+	while(1): # quits when inp = CMDS['QUIT']['cmd']
 		inp = raw_input():
-		inp = inp.split(" ")
+
+		# Parse input string
+		inp = parse_input(inp)
+
+		# Check if list of strings is valid
+		if(check_formats(inp) == 1):
+			if(inp[0] == CMDS['INSERT']['cmd']):
+			
+			elif(inp[0] == CMDS['DELETE']['cmd']):
+
+			elif(inp[0] == CMDS['UPDATE']['cmd']):
+
+			elif(inp[0] == CMDS['LIST']['cmd']):
+
+			elif(inp[0] == CMDS['ADD_FRIEND']['cmd']):
+
+			elif(inp[0] == CMDS['QUIT']['cmd']):
+
+			elif(inp[0] == CMDS['HELP']['cmd']):
+
+
 		
-		switch(
