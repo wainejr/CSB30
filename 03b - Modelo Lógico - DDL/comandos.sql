@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE users
     (login TEXT NOT NULL,
     name TEXT NOT NULL,
     hometown TEXT NOT NULL,
     PRIMARY KEY (login));
 
-CREATE TABLE IF NOT EXISTS blocks
+CREATE TABLE blocks
     (user_blocking TEXT NOT NULL,
     user_blocked TEXT NOT NULL,
     reason TEXT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS blocks
         ON UPDATE CASCADE,
     PRIMARY KEY (user_blocking, user_blocked));
 
-CREATE TABLE IF NOT EXISTS friends
+CREATE TABLE friends
     (user_1 TEXT NOT NULL,
     user_2 TEXT NOT NULL,
     FOREIGN KEY (user_1)
@@ -31,13 +31,13 @@ CREATE TABLE IF NOT EXISTS friends
         ON UPDATE CASCADE,
     PRIMARY KEY (user_1, user_2));
 
-CREATE TABLE IF NOT EXISTS people
+CREATE TABLE people
     (name TEXT NOT NULL,
     phone_number INTEGER,
-    adress TEXT,
+    address TEXT,
     PRIMARY KEY (name));
 
-CREATE TABLE IF NOT EXISTS movies
+CREATE TABLE movies
     (id TEXT NOT NULL, -- changing id to TEXT to match URL format
     name TEXT NOT NULL,
     release_date DATE, -- changing release_date to DATE format
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS movies
         ON UPDATE CASCADE,
     PRIMARY KEY (id));
 
-CREATE TABLE IF NOT EXISTS act
+CREATE TABLE act
     (person_1 TEXT NOT NULL,
     movie_id TEXT NOT NULL,
     salary DECIMAL NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS act
         ON UPDATE CASCADE,
     PRIMARY KEY (person_1, movie_id));
 
-CREATE TABLE IF NOT EXISTS categories
+CREATE TABLE categories
     (name TEXT NOT NULL,
     super_category TEXT,
     FOREIGN KEY (super_category)
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS categories
         ON UPDATE CASCADE,
     PRIMARY KEY (name));
 
-CREATE TABLE IF NOT EXISTS incategory
+CREATE TABLE incategory
     (movie_id TEXT NOT NULL,
     category TEXT,
     FOREIGN KEY (movie_id)
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS incategory
         ON UPDATE CASCADE,
     PRIMARY KEY (movie_id, category));
 
-CREATE TABLE IF NOT EXISTS likesMovie
+CREATE TABLE likesMovie
     (user_likes TEXT NOT NULL,
     movie_id TEXT NOT NULL,
     rating INTEGER NOT NULL,
@@ -99,20 +99,20 @@ CREATE TABLE IF NOT EXISTS likesMovie
         ON UPDATE CASCADE,
     PRIMARY KEY (user_likes, movie_id));
 
-CREATE TABLE IF NOT EXISTS musicalArtists
+CREATE TABLE musicalArtists
     (id TEXT NOT NULL, -- changing id to TEXT to match URL format
     artistic_name TEXT NOT NULL,
     country TEXT,
     musical_genre TEXT,
     PRIMARY KEY (id));
 
-CREATE TABLE IF NOT EXISTS musicians
+CREATE TABLE musicians
     (name TEXT NOT NULL,
     musical_genre TEXT,
     birthday DATE,
     PRIMARY KEY (name));
 
-CREATE TABLE IF NOT EXISTS groups
+CREATE TABLE groups
     (musical_artist TEXT NOT NULL,
     FOREIGN KEY (musical_artist)
         REFERENCES musicalArtists(id) 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS groups
         ON UPDATE CASCADE,
     PRIMARY KEY (musical_artist));
 
-CREATE TABLE IF NOT EXISTS singer
+CREATE TABLE singer
     (musical_artist TEXT NOT NULL,
     musician TEXT NOT NULL,
     FOREIGN KEY (musical_artist)
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS singer
         ON UPDATE CASCADE,
     PRIMARY KEY (musical_artist));
 
-CREATE TABLE IF NOT EXISTS duo
+CREATE TABLE duo
     (musical_artist TEXT NOT NULL,
     FOREIGN KEY (musical_artist)
         REFERENCES musicalArtists(id)
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS duo
         ON UPDATE CASCADE,
     PRIMARY KEY (musical_artist));
 
-CREATE TABLE IF NOT EXISTS groupHas
+CREATE TABLE groupHas
     (musician TEXT NOT NULL,
     group_name_id TEXT NOT NULL,
     FOREIGN KEY (musician)
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS groupHas
         ON UPDATE CASCADE,
     PRIMARY KEY (musician, group_name_id));
 
-CREATE TABLE IF NOT EXISTS duoHas
+CREATE TABLE duoHas
     (musician TEXT NOT NULL,
     duo_id TEXT NOT NULL,
     FOREIGN KEY (musician)
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS duoHas
         ON UPDATE CASCADE,
     PRIMARY KEY (musician, duo_id));
 
-CREATE TABLE IF NOT EXISTS likesArtist
+CREATE TABLE likesArtist
     (user_who_likes TEXT NOT NULL,
     musical_artist TEXT NOT NULL,
     rating INTEGER NOT NULL,

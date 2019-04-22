@@ -87,10 +87,12 @@ def check_format(inp):
 if __name__ == '__main__':
 	inp = ''
 	while(1): # quits when inp = CMDS['QUIT']['cmd']
-		inp = input()
-		db = 0
+		db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
+		inp = raw_input()
 		# Parse input string
 		inp = parse_input(inp)
+		while ";" in inp:
+			inp.remove(";")
 		# Check if list of strings is valid
 		if(check_format(inp) == 1):
 			if(inp[0] == CMDS['INSERT']['cmd']):

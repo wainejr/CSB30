@@ -9,6 +9,9 @@ COMMANDS = {
 }
 '''
 
+import psycopg2
+import psycopg2.extras
+
 CMDS = {
 	'INSERT':{
 		'cmd':'-i',
@@ -77,8 +80,6 @@ def QUIT(args, db):
 		db: database
 	'''
 	print("Quitting...")	
-	a = 0
-
 
 def ADD_FRIEND(args, db):
 	'''
@@ -89,8 +90,13 @@ def ADD_FRIEND(args, db):
 		db: database
 	'''
 	print("Adding friends relationship...")
-	a = 0
-
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("INSERT INTO friends VALUES ('{}', '{}')".format(args[1], args[2]))
+		conn.commit()
+	except Exception as e:
+		print(e)
 
 def LIST(args, db):
 	'''
@@ -99,7 +105,15 @@ def LIST(args, db):
 		db: database
 	'''
 	print("Listing persons...")
-	a = 0
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("SELECT * FROM users")
+		for person in cursor.fetchall():
+			print("Login: {} -- Name: {} -- Hometown: {}".format(person[0], person[1], person[2]))
+		conn.commit()
+	except Exception as e:
+		print(e)
 
 
 def UPDATE(args, db):
@@ -112,7 +126,14 @@ def UPDATE(args, db):
 		db: database
 	'''
 	print("Updatin person...")
-	a = 0
+	print("UPDATE users SET name = '{}', hometown = '{}' WHERE name = '{}' OR login = '{}'".format(args[2], args[3], args[1], args[1]))
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("UPDATE users SET name = '{}', hometown = '{}' WHERE name = '{}' OR login = '{}'".format(args[2], args[3], args[1], args[1]))
+		conn.commit()
+	except Exception as e:
+		print(e)
 
 
 def DELETE(args, db):
@@ -123,7 +144,13 @@ def DELETE(args, db):
 		db: database
 	'''
 	print("Deleting person...")
-	a = 0
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("DELETE FROM users WHERE name = '{}' OR login = '{}'".format(args[1], args[1]))
+		conn.commit()
+	except Exception as e:
+		print(e)
 
 
 def INSERT(args, db):
@@ -135,5 +162,11 @@ def INSERT(args, db):
 		db: database
 	'''
 	print("Inserting person...")
-	a = 0
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("INSERT INTO users VALUES ('{}', '{}')".format(args[1], args[3]))
+		conn.commit()
+	except Exception as e:
+		print(e)
 
