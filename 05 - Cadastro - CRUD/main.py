@@ -88,13 +88,14 @@ if __name__ == '__main__':
 	inp = ''
 	while(1): # quits when inp = CMDS['QUIT']['cmd']
 		db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
+		print("\nEnter a command: (use -h to get some help)")
 		inp = raw_input()
 		# Parse input string
 		inp = parse_input(inp)
-		while ";" in inp:
-			inp.remove(";")
 		# Check if list of strings is valid
 		if(check_format(inp) == 1):
+			while ";" in inp:
+				inp.remove(";")
 			if(inp[0] == CMDS['INSERT']['cmd']):
 				INSERT(inp, db)
 			elif(inp[0] == CMDS['DELETE']['cmd']):
