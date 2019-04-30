@@ -15,7 +15,7 @@ import psycopg2.extras
 CMDS = {
 	'INSERT':{
 		'cmd':'-i',
-		'fmt':'LOGIN;NAME;HOMETOWN',
+		'fmt':'LOGIN ; NAME ; HOMETOWN',
 		're_inp':[['-i'],['[0-9]+','.+'],[';'],['.+'],[';'],['.+']],
 		'dcr':'Insert person on database'
 	},
@@ -27,9 +27,9 @@ CMDS = {
 	},
 	'UPDATE':{
 		'cmd':'-u',
-		'fmt':'LOGIN;NEW_LOGIN;NEW_NAME;NEW_HOMETOWN',
+		'fmt':'LOGIN ; NEW_LOGIN ; NEW_NAME ; NEW_HOMETOWN',
 		're_inp':[['-u'],['[0-9]+','.+'],[';'],['[0-9]+','.+'], [';'], ['.+'], [';'], ['.+']],
-		'dcr':'update person on database'
+		'dcr':'Update person on database'
 	},
 	'LIST':{
 		'cmd':'-l',
@@ -39,7 +39,7 @@ CMDS = {
 	},
 	'ADD_FRIEND':{
 		'cmd':'-a',
-		'fmt':'LOGIN_1;LOGIN_2',
+		'fmt':'LOGIN_1 ; LOGIN_2',
 		're_inp':[['-a'],['[0-9]+','.+'],[';'],['[0-9]+','.+']],
 		'dcr':'Adds friend relationship'		
 	},
@@ -68,6 +68,7 @@ def HELP(args, db):
 	for i in CMDS:
 		sorted_cmds.append(i)
 	sorted_cmds.sort()
+	print()
 	for i in sorted_cmds: # prints commands in alphabetic order
 		print(i +": " + CMDS[i]['cmd'] + " " + CMDS[i]['fmt'])
 		print(CMDS[i]['dcr'] + "\n")
@@ -79,7 +80,7 @@ def QUIT(args, db):
 		args[0]: '-q'
 		db: database
 	'''
-	print("Quitting...")	
+	print("Quitting...")
 
 def ADD_FRIEND(args, db):
 	'''

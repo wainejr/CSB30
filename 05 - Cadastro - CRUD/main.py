@@ -35,79 +35,42 @@ def parse_input(inp):
 
 def check_format(inp):
 	try:
-		if inp[0] == CMDS['ADD_FRIEND']['cmd']:
-			if(check_regex(inp, CMDS['ADD_FRIEND']['re_inp'])):
-				return 1
-			else:
-				return -1
-		elif inp[0] == CMDS['DELETE']['cmd']:
-			if(check_regex(inp, CMDS['DELETE']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		elif inp[0] == CMDS['HELP']['cmd']:
-			if(check_regex(inp, CMDS['HELP']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		elif inp[0] == CMDS['INSERT']['cmd']:
-			if(check_regex(inp, CMDS['INSERT']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		elif inp[0] == CMDS['LIST']['cmd']:
-			if(check_regex(inp, CMDS['LIST']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		elif inp[0] == CMDS['QUIT']['cmd']:
-			if(check_regex(inp, CMDS['QUIT']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		elif inp[0] == CMDS['UPDATE']['cmd']:	 
-			if(check_regex(inp, CMDS['UPDATE']['re_inp'])):
-				return 1
-			else:
-				return -1
-
-		else:
-			print('Invalid input format')
-			return -1
-
+		for i in CMDS:
+			if inp[0] == CMDS[i]['cmd']:
+				if(check_regex(inp, CMDS[i]['re_inp'])):
+					return 1
+		print('Invalid input format')
+		return -1
 	except Exception as e:
-		print('Excepction')
+		print(e)
 		return -1
 
 if __name__ == '__main__':
 	inp = ''
+	db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
 	while(1): # quits when inp = CMDS['QUIT']['cmd']
-		db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
 		print("\nEnter a command: (use -h to get some help)")
-		inp = raw_input()
+		inp = input()
 		# Parse input string
 		inp = parse_input(inp)
 		# Check if list of strings is valid
 		if(check_format(inp) == 1):
-			while ";" in inp:
-				inp.remove(";")
+			args = []
+			for i in inp:
+				if i != ';':
+					args.append(i)
 			if(inp[0] == CMDS['INSERT']['cmd']):
-				INSERT(inp, db)
+				INSERT(args, db)
 			elif(inp[0] == CMDS['DELETE']['cmd']):
-				DELETE(inp, db)
+				DELETE(args, db)
 			elif(inp[0] == CMDS['UPDATE']['cmd']):
-				UPDATE(inp, db)
+				UPDATE(args, db)
 			elif(inp[0] == CMDS['LIST']['cmd']):
-				LIST(inp, db)
+				LIST(args, db)
 			elif(inp[0] == CMDS['ADD_FRIEND']['cmd']):
-				ADD_FRIEND(inp, db)
+				ADD_FRIEND(args, db)
 			elif(inp[0] == CMDS['QUIT']['cmd']):
-				QUIT(inp, db)
+				QUIT(args, db)
 				break
 			elif(inp[0] == CMDS['HELP']['cmd']):
-				HELP(inp, db)
+				HELP(args, db)
