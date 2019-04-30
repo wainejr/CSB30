@@ -1,4 +1,6 @@
-from urllib.request import urlopen
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from urllib2 import urlopen
 import xml.etree.ElementTree as ET
 
 tabledef = [
@@ -30,11 +32,9 @@ def xml2dict(tabledef):
     dict2ret = {}
     for tableitem in tabledef:
         itemList = []
-        with urlopen(
-            "http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/"+ tableitem["url"] + ".xml"
-            ) as conn:
-            xmltree = ET.parse(conn)
-            root = xmltree.getroot()
+        conn = urlopen("http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/"+ tableitem["url"] + ".xml")
+        xmltree = ET.parse(conn)
+        root = xmltree.getroot()
         for item in root.iter():
             if item.attrib:
                 itemObj = item.attrib
@@ -45,7 +45,7 @@ def xml2dict(tabledef):
         dict2ret[tableitem["table"]] = itemList
     return dict2ret
 
-def dict2sql(dictIn: dict, tdef=None):
+def dict2sql(dictIn, tdef=None):
     commands = []
     global command_body, tabledef
     if not tdef:
