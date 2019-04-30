@@ -10,20 +10,20 @@ tabledef = [
         "table": "users"
     },
     {
-        "url": "movie",
-        "format": ["person", "movieUri", "rating"],
-        "table": "likesMovie"
-    },
-    {
-        "url": "music",
-        "format": ["person", "bandUri", "rating"],
-        "table": "likesArtist"
-    },
-    {
         "url": "knows",
         "format": ["person", "colleague"],
         "table": "friends"
     },
+    # {
+    #     "url": "movie",
+    #     "format": ["person", "movieUri", "rating"],
+    #     "table": "likesMovie"
+    # },
+    # {
+    #     "url": "music",
+    #     "format": ["person", "bandUri", "rating"],
+    #     "table": "likesArtist"
+    # },
 ]
 
 command_body = "INSERT INTO {} VALUES (\'{}\');"
@@ -60,33 +60,33 @@ def getCommands():
     global tabledef
     return dict2sql(xml2dict(tabledef))
 
-def test():
-    tabdef = [
-        {"table": "tabela1"}, {"table": "tabela2"}
-    ]
+# def test():
+#     tabdef = [
+#         {"table": "tabela1"}, {"table": "tabela2"}
+#     ]
 
-    test_dict = {
-        "tabela1" : [
-            ['elemento1_campo1', 'elemento1_campo2'],
-            ['elemento2_campo1', 'elemento2_campo2']
-        ],
-        "tabela2" : [
-            ['elemento1_campo1', 'elemento1_campo2', 'elemento1_campo3'],
-            ['elemento2_campo1', 'elemento2_campo2', 'elemento2_campo3']
-        ]
-    }
+#     test_dict = {
+#         "tabela1" : [
+#             ['elemento1_campo1', 'elemento1_campo2'],
+#             ['elemento2_campo1', 'elemento2_campo2']
+#         ],
+#         "tabela2" : [
+#             ['elemento1_campo1', 'elemento1_campo2', 'elemento1_campo3'],
+#             ['elemento2_campo1', 'elemento2_campo2', 'elemento2_campo3']
+#         ]
+#     }
 
-    test_commands_result = [
-        "INSERT INTO tabela1 VALUES ('elemento1_campo1','elemento1_campo2');",
-        "INSERT INTO tabela1 VALUES ('elemento2_campo1','elemento2_campo2');",
-        "INSERT INTO tabela2 VALUES ('elemento1_campo1','elemento1_campo2','elemento1_campo3');",
-        "INSERT INTO tabela2 VALUES ('elemento2_campo1','elemento2_campo2','elemento2_campo3');"
-    ]
+#     test_commands_result = [
+#         "INSERT INTO tabela1 VALUES ('elemento1_campo1','elemento1_campo2');",
+#         "INSERT INTO tabela1 VALUES ('elemento2_campo1','elemento2_campo2');",
+#         "INSERT INTO tabela2 VALUES ('elemento1_campo1','elemento1_campo2','elemento1_campo3');",
+#         "INSERT INTO tabela2 VALUES ('elemento2_campo1','elemento2_campo2','elemento2_campo3');"
+#     ]
 
-    flag = True
-    for index, command in enumerate(dict2sql(test_dict, tdef=tabdef)):
-        if command != test_commands_result[index]:
-            print(command, " is different from ", test_commands_result[index])
-            flag = False
-    if flag:
-        print("dict2sql test passed")
+#     flag = True
+#     for index, command in enumerate(dict2sql(test_dict, tdef=tabdef)):
+#         if command != test_commands_result[index]:
+#             print(command, " is different from ", test_commands_result[index])
+#             flag = False
+#     if flag:
+#         print("dict2sql test passed")
