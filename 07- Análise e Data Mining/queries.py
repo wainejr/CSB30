@@ -1,5 +1,6 @@
 import psycopg2
 import psycopg2.extras
+import matplotlib.pyplot as plt
 
 def AVG(args, db):
 	'''
@@ -125,6 +126,56 @@ def GROUP_USER_COUNT(args, db):
 	except Exception as e:
 		print(e)
 
+def MOVIE_COUNT_PEOPLE(db):
+	'''
+		Number of people that liked x movies
+		db: database
+	'''
+	print("Creating people that liked x movies graph...")
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		
+		# cursor.execute("SELECT * FROM likesmovie")
+		cursor.execute("SELECT mc.movie_count, COUNT(*) \
+			FROM (SELECT user_likes, COUNT(*) AS movie_count FROM likesmovie GROUP BY user_likes) AS mc \
+			GROUP BY mc.movie_count \
+			ORDER BY mc.movie_count;")
+		result = cursor.fetchall()
+		xscale = [item[0] for item in result]
+		yscale = [item[1] for item in result]
+		print(xscale, yscale)
+		plt.figure("people by x movies")
+		plt.plot(xscale, yscale)
+		# plt.show()
+	except Exception as e:
+		print(e)
+
+def PEOPLE_COUNT_MOVIE(db):
+	'''
+		Number of movies that are liked by x people
+		db: database
+	'''
+	print("Creating movies liked by x people...")
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		
+		# cursor.execute("SELECT * FROM likesmovie")
+		cursor.execute("SELECT mc.user_count, COUNT(*) \
+			FROM (SELECT movie_id, COUNT(*) AS user_count FROM likesmovie GROUP BY movie_id) AS mc \
+			GROUP BY mc.user_count \
+			ORDER BY mc.user_count;")
+		result = cursor.fetchall()
+		xscale = [item[0] for item in result]
+		yscale = [item[1] for item in result]
+		print(xscale, yscale)
+		plt.figure("Movies by x people")
+		plt.plot(xscale, yscale)
+		plt.show()
+	except Exception as e:
+		print(e)
+
 db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
 #Q1
 # print(AVG(['LikesArtist', 'Rating'], db))
@@ -140,4 +191,8 @@ group_members = [
 	"http://utfpr.edu.br/CSB30/2019/1/DI1901giovanniforastieri",
 	"http://utfpr.edu.br/CSB30/2019/1/DI1901wainejunior"
 ]
-CONHECE_NORMALIZADA(db, group=group_members)
+# CONHECE_NORMALIZADA(db, group=group_members)
+#Q7
+MOVIE_COUNT_PEOPLE(db)
+#Q8
+PEOPLE_COUNT_MOVIE(db)
