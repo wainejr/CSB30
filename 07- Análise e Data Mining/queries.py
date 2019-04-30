@@ -78,12 +78,66 @@ def POPULAR(args, db):
 	except Exception as e:
 		print(e)
 
+def CONHECE_NORMALIZADA(db, group = None):
+	'''
+		Q4: Create view ConheceNormalizada
+		Q6: Show the count for each user in the group
+		group: group members for Q6
+		db: database
+	'''
+	
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		print("Creating view...")
+		cursor.execute("CREATE VIEW ConheceNormalizada  AS \
+			SELECT user_1 AS user1, user_2 AS user2\
+			FROM Friends UNION \
+			SELECT user_2 AS user1, user_1 AS user2\
+			FROM Friends;")
+		cursor.execute("SELECT * FROM ConheceNormalizada;")
+		print(cursor.fetchall())
+		print("Getting user count...")
+		cursor.execute("SELECT user1, COUNT(*)  \
+			FROM ConheceNormalizada \
+			WHERE user1 IN (\'{}\', \'{}\', \'{}\') \
+			GROUP BY user1;".format(group[0], group[1], group[2]))
+		print(cursor.fetchall())
+		# return cursor.fetchall()
+	except Exception as e:
+		print(e)
+
+def GROUP_USER_COUNT(args, db):
+	'''
+		Show the count for each user in the group
+ 		args[n]: user n to count (3 in case of exercise)
+		db: database
+	'''
+	
+	conn = psycopg2.connect(db)
+	cursor = conn.cursor()
+	try:
+		cursor.execute("SELECT user1, COUNT(*)  \
+			FROM ConheceNormalizada \
+			WHERE user1 IN (\"{}\", \"{}\", \"{}\") \
+			GROUP BY user1;".format(args[0], args[1], args[2]))
+		return cursor.fetchall()
+	except Exception as e:
+		print(e)
+
 db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
 #Q1
-print(AVG(['LikesArtist', 'Rating'], db))
+# print(AVG(['LikesArtist', 'Rating'], db))
 #Q1
-print(STD_DEV(['LikesArtist', 'Rating'], db))
+# print(STD_DEV(['LikesArtist', 'Rating'], db))
 #Q2
-print(AVG_TABLE_RATING(['LikesArtist', 'musical_artist', 'Rating'], db))
+# print(AVG_TABLE_RATING(['LikesArtist', 'musical_artist', 'Rating'], db))
 #Q3
-print(POPULAR(['LikesArtist', 'musical_artist'], db))
+# print(POPULAR(['LikesArtist', 'musical_artist'], db))
+#Q4 to Q6
+group_members = [
+	"http://utfpr.edu.br/CSB30/2019/1/DI1901ianqueros",
+	"http://utfpr.edu.br/CSB30/2019/1/DI1901giovanniforastieri",
+	"http://utfpr.edu.br/CSB30/2019/1/DI1901wainejunior"
+]
+CONHECE_NORMALIZADA(db, group=group_members)
