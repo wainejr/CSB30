@@ -35,7 +35,7 @@
 - Devem ser definidos respectivamente: os imports, as constantes, as classes, as funções e a ``main()``.
 
 #### Exemplo de código
-    
+
     '''
         My module description
     '''
@@ -73,13 +73,6 @@
 
 - Sempre realizar um pull antes de começar a alterar os arquivos, assim como antes de dar commit/push
 - Não adicionar arquivos de tamanho grande, como vídeos
-
-#### Branches
-
-- Para cada ramo do trabalho deve ser criada uma branch. Para tarefas mais rápidas, pode-se utilizar a branch _working_ para modificação do código.
-- O código só deve ser mergido com a branch _master_ quando estiver livre de bugs não necessitar de demais alterações
-- Branches que forem dependentes devem ser mergidas entre si para testes e só depois mergidas para a _master_
-
 
 #### Commits
 
