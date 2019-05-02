@@ -108,8 +108,7 @@ def conhece_normalizada(db, group=None):
             FROM ConheceNormalizada \
             WHERE user1 IN (\'{}\', \'{}\', \'{}\') \
             GROUP BY user1;".format(group[0], group[1], group[2]))
-        print(cursor.fetchall())
-    # return cursor.fetchall()
+        return cursor.fetchall()
     except Exception as e:
         print(e)
 
@@ -263,8 +262,6 @@ def connectivity(db):
         cursor.execute("SELECT COUNT(*) \
                             FROM Users U")
         n_users = (cursor.fetchall())[0][0]
-        print(n_friendships)
-        print(n_users)
         print("Connnectivity: " + str(n_friendships/n_users))
         return n_friendships/n_users
 
@@ -274,26 +271,41 @@ def connectivity(db):
 
 db = "dbname='1901vaTapaueR' user='1901vaTapaueR' host='200.134.10.32' password='413189'"
 # Q1
+print("Q1:")
 print(avg(['LikesArtist', 'Rating'], db))
 # Q1
 print(std_dev(['LikesArtist', 'Rating'], db))
+print()
 # Q2
-print(avg_table_rating(['LikesArtist', 'musical_artist', 'Rating'], db))
+print("Q2")
+for i in avg_table_rating(['LikesArtist', 'musical_artist', 'Rating'], db):
+    print("( ", end='')
+    print(i[0], end='')
+    print(" , " + str(i[1]) + ")")
+
 # Q3
-print(popular(['LikesArtist', 'musical_artist'], db))
+print()
+print("Q3")
+for i in popular(['LikesArtist', 'musical_artist'], db):
+    print("( ", end='')
+    print(i[0], end='')
+    print(" , " + str(i[1]) + ")")
+
 # Q4 to Q6
 group_members = [
     "http://utfpr.edu.br/CSB30/2019/1/DI1901ianqueros",
     "http://utfpr.edu.br/CSB30/2019/1/DI1901giovanniforastieri",
     "http://utfpr.edu.br/CSB30/2019/1/DI1901wainejunior"
 ]
-conhece_normalizada(db, group=group_members)
+#print(conhece_normalizada(db, group=group_members))
 # Q7
-movie_count_people(db)
+#movie_count_people(db)
 # Q8
-people_count_movie(db)
+#people_count_movie(db)
 # Q9
-friends_count_user(db)
+#friends_count_user(db)
+print()
+print("Q9")
 connectivity(db)
 
 plt.show()
