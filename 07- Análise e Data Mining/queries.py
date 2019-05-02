@@ -79,7 +79,7 @@ def popular(args, db):
     try:
         cursor.execute("SELECT {}, COUNT(*) FROM {} GROUP BY {} ORDER BY COUNT(*);".format(
             args[1], args[0], args[1]))
-        return cursor.fetchall()
+        return cursor.fetchall()[-10:]
     except Exception as e:
         print(e)
 
