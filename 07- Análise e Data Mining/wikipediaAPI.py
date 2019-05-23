@@ -52,35 +52,34 @@ list_artist = []
 list_movies = []
 
 for key in dictxml.keys():
-	for item in dictxml[key]:
-		if key == "likesArtist":
-			list_artist.append(item[1].split("/")[-1])
+    for item in dictxml[key]:
+        if key == "likesArtist":
+            list_artist.append(item[1].split("/")[-1])
 
-		if key == "likesMovie":
-			list_movies.append(item[1])
+        if key == "likesMovie":
+            list_movies.append(item[1])
 
 dict_artist = {}
-
+print(list_artist)
 
 for index,artist in enumerate(list_artist) :
-	if index == 3:
-		break
-	dict_artist[artist] = {}
-	page = wptools.page(str(artist))
-	page.get_parse()
-	try:
-		# years_active = re.findall('[0-9]{4}|present{1}', page.data['infobox']['years_active'])
-		# print(years_active)
-		# year_initial = years_active.split("–")[0]
-		# year_final = years_active.split("–")[1] # pode parecer um traco mas nao eh
-		# dict_artist[artist]['year_initial'] = year_initial
-		# dict_artist[artist]['year_final'] = year_final
-		
-	except Exception as e:
-		print(e)
+    if index == 3:
+        break
+    dict_artist[artist] = {}
+    page = wptools.page(str(artist))
+    page.get_parse()
+    try:
+        #years_active = re.findall('[0-9]{4}|present{1}', page.data['infobox']['years_active'])
+        # print(years_active)
+        # year_initial = years_active.split("–")[0]
+        # year_final = years_active.split("–")[1] # pode parecer um traco mas nao eh
+        # dict_artist[artist]['year_initial'] = year_initial
+        # dict_artist[artist]['year_final'] = year_final
+    except Exception as e:
+        print(e)
 
 
-	
+
 print(dict_artist)
 
 
