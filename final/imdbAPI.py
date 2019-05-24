@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+# ESSE DAQUI GUARDA NO MOVIES E MOVIES HAS GENRE
+
 from imdb import IMDb
 import re
 import urllib.request
@@ -52,25 +54,10 @@ except Exception as e:
     print(e)
     print("I am unable to connect to the database.")
 
+seen_movie = set()
+
 for movie in list_movies:
     imdbmovie = ia.get_movie(movie)
-
-    # people_query = "INSERT INTO people VALUES ('{}', {}, {})".format(imdbmovie['directors'][0], "null", "null")
-
-    # seen_people = set()
-
-    # if people_query not in seen_people:
-    #   print(people_query)
-    #   seen_people.add(people_query)
-    #   cur = conn.cursor()
-    #   try:
-    #     cur.execute(people_query)
-    #   except Exception as e:
-    #     print(e)
-    #   conn.commit()
-
-    # -----------------
-
     months = {
       'Jan': '01',
       'Feb': '02',
@@ -89,11 +76,17 @@ for movie in list_movies:
 
     movies_query = "INSERT INTO movies VALUES ('http://www.imdb.com/title/tt{}/', '{}', '{}', '{}')".format(
       movie, 
-      imdbmovie['canonical title'],
+      str(imdbmovie['canonical title']).replace("'", ""),
       date_formated,
-      imdbmovie['directors'][0])
+      str(imdbmovie['directors'][0]).replace("'", ""))
 
-    seen_movie = set()
+    movie_has_genre_query_list = []
+
+    for genre in imdbmovie['genres']:
+      movie_has_genre_query_list.append("INSERT INTO movie_has_genre VALUES ('http://www.imdb.com/title/tt{}/', '{}')".format(
+        movie,
+        str(genre).replace("'", "")
+      ))
 
     if movies_query not in seen_movie:
       print(movies_query)
@@ -101,6 +94,9 @@ for movie in list_movies:
       cur = conn.cursor()
       try:
         cur.execute(movies_query)
+        for movie_has_genre_query in movie_has_genre_query_list:
+          print(movie_has_genre_query)
+          cur.execute(movie_has_genre_query)
       except Exception as e:
         print(e)
       conn.commit()

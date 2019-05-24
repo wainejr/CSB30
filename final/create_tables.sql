@@ -22,7 +22,6 @@ CREATE TABLE movies
     title TEXT NOT NULL,
     release_date DATE, -- changing release_date to DATE format
     director TEXT,
-    genres TEXT,
     PRIMARY KEY (id));
 
 CREATE TABLE movie_has_genre

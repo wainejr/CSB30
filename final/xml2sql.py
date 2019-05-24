@@ -4,11 +4,11 @@ from urllib2 import urlopen
 import xml.etree.ElementTree as ET
 
 tabledef = [
-    # {
-    #     "url": "person",
-    #     "format": ["uri", "name", "hometown"],
-    #     "table": "users"
-    # },
+    {
+        "url": "person",
+        "format": ["uri", "name", "hometown"],
+        "table": "users"
+    },
     {
         "url": "knows",
         "format": ["person", "colleague"],
@@ -19,11 +19,11 @@ tabledef = [
         "format": ["person", "movieUri", "rating"],
         "table": "likes_movie"
     },
-    {
-        "url": "music",
-        "format": ["person", "bandUri", "rating"],
-        "table": "likesArtist"
-    },
+    # {
+    #     "url": "music",
+    #     "format": ["person", "bandUri", "rating"],
+    #     "table": "likesArtist"
+    # },
 ]
 
 command_body = "INSERT INTO {} VALUES (\'{}\');"
