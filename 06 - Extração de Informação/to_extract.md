@@ -1,21 +1,29 @@
 # Músicas
 
+## Obrigatórios
+
 - Nome da banda/artista (wiki)
 - Cidade e país de origem (wiki)
-- Gênero(s) musica(is) (wiki)
-- Anos ativos (wiki)
-- Link p/ img da banda/artista (lastfm ou wiki)
-- Top albuns do last.fm (lastfm)
+- Gênero(s) musica(is) (Spotify)
+
+## Opcionais
+
+- Popularidade (Spotify)
+- Followers (Spotify)
+- Link p/ img da banda/artista (Spotify)
 
 # Filmes
 
-- Nome do filme (IMDb ou wiki)
-- Data de lançamento (IMDb ou wiki)
-- Diretor (IMDb ou wiki)
+## Obrigatórios
+
+- Nome do filme (IMDb)
+- Data de lançamento (IMDb)
+- Diretor (IMDb)
 - Gênero (IMDb)
+
+## Opcionais
+
 - Rating IMDb (IMDb)
-- Tempo de duração (wiki)
-- Língua (wiki)
-- País (wiki)
-- Budget (wiki)
-- Box Office (wiki)
+- Língua (IMDb)
+- País (IMDb)
+- Budget (IMDb)
