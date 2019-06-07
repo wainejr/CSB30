@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from xml2dict import xml2dict
 
+
 def generateLikesTuples():
     like_related_tuples = {"likes_band": [], "likes_movie": []}
 
@@ -23,4 +24,3 @@ def generateLikesTuples():
             # print(like_related_tuples["likes_movie"][-1])
 
     return like_related_tuples
-    

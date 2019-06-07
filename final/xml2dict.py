@@ -7,29 +7,28 @@ tabledef = {
     "person": {
         "url": "person",
         "format": ["uri", "name", "hometown"],
-        "table": "users"
+        "table": "users",
     },
-    "knows": {
-        "url": "knows",
-        "format": ["person", "colleague"],
-        "table": "friends"
-    },
+    "knows": {"url": "knows", "format": ["person", "colleague"], "table": "friends"},
     "movie": {
         "url": "movie",
         "format": ["person", "movieUri", "rating"],
-        "table": "likes_movie"
+        "table": "likes_movie",
     },
     "music": {
         "url": "music",
         "format": ["person", "bandUri", "rating"],
-        "table": "likesArtist"
+        "table": "likesArtist",
     },
 }
+
 
 def xml2dict(table_name):
     dict2ret = {}
     itemList = []
-    conn = urlopen("http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/"+ table_name + ".xml")
+    conn = urlopen(
+        "http://dainf.ct.utfpr.edu.br/~gomesjr/BD1/data/" + table_name + ".xml"
+    )
     xmltree = ET.parse(conn)
     root = xmltree.getroot()
     for item in root.iter():
@@ -40,5 +39,5 @@ def xml2dict(table_name):
                 elementList.append(itemObj[attr])
             itemList.append(elementList)
     dict2ret[tabledef[table_name]["table"]] = itemList
-    
+
     return dict2ret

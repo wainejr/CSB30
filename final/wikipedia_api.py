@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import requests
 from xml2dict import xml2dict
 
+
 def generateWikipediaTuples():
     bands_url_names = []
     band_related_tuples = {"bands": [], "band_has_genre": []}
@@ -12,24 +13,26 @@ def generateWikipediaTuples():
 
     for key in band_dict.keys():
         for item in band_dict[key]:
-            bands_url_names.append(item[1].split('/')[-1])
-    
+            bands_url_names.append(item[1].split("/")[-1])
+
     for band_url_name in bands_url_names:
         try:
-            data = requests.get('http://dbpedia.org/data/' + band_url_name + '.json').json()
-            band_data = data['http://dbpedia.org/resource/' + band_url_name]
+            data = requests.get(
+                "http://dbpedia.org/data/" + band_url_name + ".json"
+            ).json()
+            band_data = data["http://dbpedia.org/resource/" + band_url_name]
 
             band_dict = {
-                    "id": "https://en.wikipedia.org/wiki/" + band_url_name,
-                    "name": None,
-                    "hometown": None,
-                }
+                "id": "https://en.wikipedia.org/wiki/" + band_url_name,
+                "name": None,
+                "hometown": None,
+            }
             for key in sorted(band_data):
                 if key.split("/")[-1] == "name":
                     band_dict["name"] = band_data[key][0]["value"]
-                elif (key.split("/")[-1] == "hometown"):
+                elif key.split("/")[-1] == "hometown":
                     band_dict["hometown"] = band_data[key][0]["value"].split("/")[-1]
-                    
+
             if band_dict["name"] != "":
                 band_related_tuples["bands"].append(
                     {

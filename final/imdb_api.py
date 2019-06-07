@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from imdb import IMDb
 from xml2dict import xml2dict
 
+
 def generateIMDbTuples():
     movies_ids = []
     movie_related_tuples = {"movies": [], "movie_has_genre": []}
@@ -52,7 +53,7 @@ def generateIMDbTuples():
                         str(imdbmovie["canonical title"]).replace("'", ""),
                         date_formated,
                         str(imdbmovie["directors"][0]).replace("'", ""),
-                        int(float(imdbmovie["rating"])*10)
+                        int(float(imdbmovie["rating"]) * 10),
                     ]
                 }
             )
