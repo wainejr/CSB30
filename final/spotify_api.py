@@ -29,11 +29,12 @@ def generateBandGenresTuples(tuples):
 
     if "bands" in tuples:
         for band_tuple in tuples["bands"]:
-            for genre in getBandGenre(band_tuple["values"][1]):
-                band_related_tuples["band_has_genre"].append(
-                    {"values": [band_tuple["values"][0], genre]}
-                )
-                print(band_related_tuples["band_has_genre"][-1])
+            if band_tuple["values"][1] != None:
+                for genre in getBandGenre(band_tuple["values"][1]):
+                    band_related_tuples["band_has_genre"].append(
+                        {"values": [band_tuple["values"][0], genre]}
+                    )
+                    print(band_related_tuples["band_has_genre"][-1])
     else:
         print("You must first create a 'bands' tuple...")
 
