@@ -56,7 +56,7 @@ def generateIMDbTuples():
                     ]
                 }
             )
-            # print(movie_related_tuples["movies"][-1])
+            print(movie_related_tuples["movies"][-1])
 
             for genre in imdbmovie["genres"]:
                 movie_related_tuples["movie_has_genre"].append(
@@ -67,6 +67,6 @@ def generateIMDbTuples():
                         ]
                     }
                 )
-                # print(movie_related_tuples["movie_has_genre"][-1])
+                print(movie_related_tuples["movie_has_genre"][-1])
 
     return movie_related_tuples
