@@ -15,3 +15,26 @@ def connect():
         print(e)
         print("I am unable to connect to the database.")
     return conn
+
+
+def send2db(tuples):
+    # conn = connect()
+    # cur = conn.cursor()
+    try:
+        for key in tuples.keys():
+            command = "INSERT INTO {} VALUES (".format(key)
+            for value in tuples[key]["values"]:
+                if type(value) is int:
+                    command += value + ","
+                else:
+                    command += '"' + value + '",'
+            if command[-1] is ",":
+                command = command[:-1]
+            command += ");"
+
+            print(command)
+            # cur.execute(command)
+    except Exception as e:
+        print(e)
+
+    # conn.commit()
