@@ -1,16 +1,7 @@
-from SPARQLWrapper import SPARQLWrapper, JSON
-
-query = """PREFIX dbres: <http://dbpedia.org/resource/>
-
-DESCRIBE dbres:United_States"""
-
-
-def get_country_description():
-    sparql = SPARQLWrapper("http://dbpedia.org/sparql")
-    sparql.setReturnFormat(JSON)
-
-    sparql.setQuery(query)  # the previous query as a literal string
-
-    return sparql.query().convert()
-
-print(get_country_description())
+# Python
+import requests
+ 
+data = requests.get('http://dbpedia.org/data/The_Strokes.json').json()
+band = data['http://dbpedia.org/resource/The_Strokes']
+ 
+for key in sorted(band): print(key)

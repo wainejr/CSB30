@@ -11,7 +11,7 @@ token = util.prompt_for_user_token("Waine", "user-library-read",
                                    client_secret=SPOTIPY_CLIENT_SECRET,
                                    redirect_uri=SPOTIPY_REDIRECT_URI)
 
-name = "radiohead"
+name = "Red Hot Chili Peppers"
 spotify = sp.Spotify(auth=token)
 search = spotify.search(q='artist:' + name, type='artist')
 id = search["artists"]["items"][0]["id"]
