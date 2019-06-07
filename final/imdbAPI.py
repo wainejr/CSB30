@@ -3,19 +3,16 @@ from __future__ import unicode_literals
 from imdb import IMDb
 from xml2dict import xml2dict
 
-# movie_dict = xml2dict("movie")
-def generateIMDBtuples(movie_dict):
+def generateIMDbTuples():
     movies_ids = []
-    movie_related_tuples = {"likes_movie": [], "movies": [], "movie_has_genre": []}
+    movie_related_tuples = {"movies": [], "movie_has_genre": []}
     seen_movies = set()
+
+    movie_dict = xml2dict("movie")
 
     for key in movie_dict.keys():
         for item in movie_dict[key]:
             movies_ids.append(item[1].split("/")[-2].split("t")[-1])
-            movie_related_tuples["likes_movie"].append(
-                {"values": [item[0], item[1], item[2]]}
-            )
-            print(movie_related_tuples["likes_movie"][-1])
 
     ia = IMDb()
 
@@ -51,22 +48,25 @@ def generateIMDBtuples(movie_dict):
             movie_related_tuples["movies"].append(
                 {
                     "values": [
-                        movie_id,
+                        "http://www.imdb.com/title/tt" + movie_id + "/",
                         str(imdbmovie["canonical title"]).replace("'", ""),
                         date_formated,
                         str(imdbmovie["directors"][0]).replace("'", ""),
+                        int(float(imdbmovie["rating"])*10)
                     ]
                 }
             )
-            # print(movie_related_tuples[-1])
+            # print(movie_related_tuples["movies"][-1])
 
             for genre in imdbmovie["genres"]:
                 movie_related_tuples["movie_has_genre"].append(
-                    {"values": [movie_id, str(genre).replace("'", "")]}
+                    {
+                        "values": [
+                            "http://www.imdb.com/title/tt" + movie_id + "/",
+                            str(genre).replace("'", ""),
+                        ]
+                    }
                 )
-                # print(movie_related_tuples[-1])
+                # print(movie_related_tuples["movie_has_genre"][-1])
 
     return movie_related_tuples
-
-
-generateIMDBtuples(xml2dict("movie"))

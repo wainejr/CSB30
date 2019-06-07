@@ -22,6 +22,7 @@ CREATE TABLE movies
     title TEXT NOT NULL,
     release_date DATE, -- changing release_date to DATE format
     director TEXT,
+    rating INTEGER,
     PRIMARY KEY (id));
 
 CREATE TABLE movie_has_genre
@@ -64,7 +65,7 @@ CREATE TABLE band_has_genre
         ON UPDATE CASCADE,
     PRIMARY KEY (id_band, genre_name));
 
-CREATE TABLE likes_artist
+CREATE TABLE likes_band
     (id_user TEXT NOT NULL,
     id_band TEXT NOT NULL,
     rating INTEGER NOT NULL,

@@ -40,6 +40,5 @@ def xml2dict(table_name):
                 elementList.append(itemObj[attr])
             itemList.append(elementList)
     dict2ret[tabledef[table_name]["table"]] = itemList
+    
     return dict2ret
-
-
