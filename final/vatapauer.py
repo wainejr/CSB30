@@ -9,7 +9,7 @@ import json
 tuples = {}
 
 tuples.update(generateWikipediaTuples())
-tuples.update(generateBandGenresTuples(tuples))
+# tuples.update(generateBandGenresTuples(tuples))
 tuples.update(generateIMDbTuples())
 tuples.update(generateLikesTuples())
 
