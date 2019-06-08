@@ -8,12 +8,13 @@ import json
 
 tuples = {}
 
-tuples.update(generateWikipediaTuples())
-# tuples.update(generateBandGenresTuples(tuples))
-tuples.update(generateIMDbTuples())
-tuples.update(generateLikesTuples())
+with open('tuples.txt') as f:
+    tuples = json.loads(f.read())
 
-print(tuples)
+# tuples.update(generateWikipediaTuples())
+tuples.update(generateBandGenresTuples(tuples))
+# tuples.update(generateIMDbTuples())
+# tuples.update(generateLikesTuples())
 
-with open('tuples.txt', 'w') as file:
-    file.write(json.dumps(tuples)) # use `json.loads` to do the reverse
+# with open('tuples.txt', 'w') as file:
+#     file.write(json.dumps(tuples)) # use `json.loads` to do the reverse
