@@ -22,7 +22,7 @@ def generateWikipediaTuples():
                 data = requests.get(
                     "http://dbpedia.org/data/" + band_url_name + ".json"
                 ).json()
-                band_data = data["http://dbpedia.org/resource/" + band_url_name]
+                band_data = data["http://dbpedia.org/resource/"+band_url_name]
 
                 band_dict = {
                     "id": "https://en.wikipedia.org/wiki/" + band_url_name,
@@ -44,8 +44,9 @@ def generateWikipediaTuples():
                         ]
                     }
                 )
-                print(band_related_tuples["bands"][-1])
-            except:
-                print("DBPedia failed at getting band...")
+                # print(band_related_tuples["bands"][-1])
+            except Exception as e:
+                print(e)
+                print("DBPedia failed at getting bands information\nURL:"+band_url_name)
 
     return band_related_tuples

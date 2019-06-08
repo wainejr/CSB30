@@ -17,13 +17,13 @@ def connect():
     return conn
 
 
-def send2db(tuples):
-    # conn = connect()
-    # cur = conn.cursor()
-    try:
-        for key in tuples.keys():
-            command = "INSERT INTO {} VALUES (".format(key)
-            for value in tuples[key]["values"]:
+def send2db(table, table_name):
+    conn = connect()
+    cur = conn.cursor()
+    for line in table:
+        try:
+            command = "INSERT INTO {} VALUES (".format(table_name)
+            for value in line["values"]:
                 if type(value) is int:
                     command += value + ","
                 else:
@@ -31,10 +31,8 @@ def send2db(tuples):
             if command[-1] is ",":
                 command = command[:-1]
             command += ");"
-
+            cur.execute(command)
+        except Exception as e:
+            print(e)    
             print(command)
-            # cur.execute(command)
-    except Exception as e:
-        print(e)
-
-    # conn.commit()
+    

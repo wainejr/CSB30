@@ -51,9 +51,10 @@ CREATE TABLE likes_movie
 CREATE TABLE bands
     (id TEXT NOT NULL, -- changing id to TEXT to match URL format
     artistic_name TEXT NOT NULL,
-    popularity INTEGER,
-    followers TEXT,
     hometown TEXT,
+    popularity INTEGER,
+    followers INTEGER,
+    url_img TEXT,
     PRIMARY KEY (id));
 
 CREATE TABLE band_has_genre

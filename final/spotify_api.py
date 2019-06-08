@@ -5,8 +5,7 @@ SPOTIPY_CLIENT_ID = "a2ceda076b844de8b08d037d86610795"
 SPOTIPY_CLIENT_SECRET = "3ae6e178ecac4a2d848b7606c09e67d4"
 SPOTIPY_REDIRECT_URI = "http://localhost/"
 
-
-def getBandGenre(band_name):
+def updateBandsInfo(table_band, table_band_has_genre):
     token = util.prompt_for_user_token(
         "Waine",
         "user-library-read",
@@ -16,26 +15,50 @@ def getBandGenre(band_name):
     )
 
     spotify = sp.Spotify(auth=token)
-    search = spotify.search(q="artist:" + band_name, type="artist")
-    id = search["artists"]["items"][0]["id"]
-    artist = spotify.artist(artist_id=id)
-
-    print(artist["genres"])
-    return artist["genres"]
-
-
-def generateBandGenresTuples(tuples):
-    band_related_tuples = {"band_has_genre": []}
-
-    if "bands" in tuples:
-        for band_tuple in tuples["bands"]:
-            if band_tuple["values"][1] != None:
-                for genre in getBandGenre(band_tuple["values"][1]):
-                    band_related_tuples["band_has_genre"].append(
-                        {"values": [band_tuple["values"][0], genre]}
+    for i in range(0, len(table_band)):
+        band = table_band[i]
+        if(len(band["values"]) > 3):
+            continue
+        # in band table: [id, name, hometown]
+        # table_band=[id, name, hometown, popularity, followers, url_img]
+        try:
+            search = spotify.search(q=band["values"][1], type="artist")
+            id = search["artists"]["items"][0]["id"]
+            artist = spotify.artist(artist_id=id)
+            # append populariy
+            try:
+                band["values"].append(artist['popularity'])
+            except Exception as e:
+                print(e)
+                print("Error inserting popularity", band["values"][0])
+                band["values"].append(None)
+            # append folowers
+            try:
+                band["values"].append(artist['followers']['total'])
+            except Exception as e:
+                print(e)
+                print("Error inserting followers", band["values"][0])
+                band["values"].append(None)
+            # append img url
+            try:
+                band["values"].append(artist['images'][0]['url'])
+            except Exception as e:
+                print(e)
+                print("Error inserting image for id", band["values"][0])
+                band["values"].append(None)
+            try:
+                for genre in artist['genres']:
+                    table_band_has_genre.append(
+                        {"values": [band["values"][0], genre]}
                     )
-                    print(band_related_tuples["band_has_genre"][-1])
-    else:
-        print("You must first create a 'bands' tuple...")
-
-    return band_related_tuples
+            except Exception as e:
+                print(e)
+                print("Error inserting genres for id")
+            # print(band["values"])
+        except Exception as e:
+            print(e)
+            print("Error searching artist with id", band["values"][0])
+        
+        while(len(band) < 6): # needs 6 arguments
+            band["values"].append(None)
+        table_band[i] = band
