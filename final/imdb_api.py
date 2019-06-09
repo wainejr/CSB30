@@ -4,7 +4,7 @@ from imdb import IMDb
 from xml2dict import xml2dict
 
 
-def generateIMDbTuples():
+def generateIMDbTuples(verbose=False):
     movies_ids = []
     movie_related_tuples = {"movies": [], "movie_has_genre": []}
     seen_movies = set()
@@ -67,6 +67,7 @@ def generateIMDbTuples():
                         ]
                     }
                 )
-                # print(movie_related_tuples["movie_has_genre"][-1])
+                if(verbose):
+                    print(movie_related_tuples["movie_has_genre"][-1])
 
     return movie_related_tuples

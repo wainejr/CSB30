@@ -5,7 +5,7 @@ SPOTIPY_CLIENT_ID = "a2ceda076b844de8b08d037d86610795"
 SPOTIPY_CLIENT_SECRET = "3ae6e178ecac4a2d848b7606c09e67d4"
 SPOTIPY_REDIRECT_URI = "http://localhost/"
 
-def updateBandsInfo(table_band, table_band_has_genre):
+def updateBandsInfo(table_band, table_band_has_genre, verbose=False):
     token = util.prompt_for_user_token(
         "Waine",
         "user-library-read",
@@ -54,11 +54,12 @@ def updateBandsInfo(table_band, table_band_has_genre):
             except Exception as e:
                 print(e)
                 print("Error inserting genres for id")
-            # print(band["values"])
+            if(verbose):
+                print(band["values"])
         except Exception as e:
             print(e)
             print("Error searching artist with id", band["values"][0])
         
-        while(len(band) < 6): # needs 6 arguments
+        while(len(band["values"]) < 6): # needs 6 arguments
             band["values"].append(None)
         table_band[i] = band

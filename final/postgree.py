@@ -24,15 +24,25 @@ def send2db(table, table_name):
         try:
             command = "INSERT INTO {} VALUES (".format(table_name)
             for value in line["values"]:
-                if type(value) is int:
-                    command += value + ","
+                if value is not None:
+                    if type(value) is int:
+                        command += str(value) + ","
+                    else:
+                        command += str("\'") + str(value) + str("\',")
                 else:
-                    command += '"' + value + '",'
+                    command += "NULL,"
             if command[-1] is ",":
                 command = command[:-1]
             command += ");"
-            cur.execute(command)
+            try:
+                cur.execute(str(command))
+                conn.commit()
+            except Exception as e:
+                print(e)
+                print(command)
+                conn.rollback()
         except Exception as e:
-            print(e)    
+            print(e)
             print(command)
-    
+    cur.close()
+    conn.close()
