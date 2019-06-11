@@ -1,0 +1,13 @@
+.background {
+  background-color: rgba(204, 204, 204, 0.274);
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
+.toolbar-custom-button {
+  margin-left: 20px;
+}
