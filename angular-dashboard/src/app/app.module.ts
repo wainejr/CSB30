@@ -1,35 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { ChartsModule } from "ng2-charts";
 
-import { CustomMaterialModule } from './custom-material/custom-material.module';
-import { InitialPageComponent } from './initial-page/initial-page.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TriviaComponent } from './trivia/trivia.component';
-import { AboutComponent } from './about/about.component';
+import { AppComponent } from "./app.component";
+import { RouterModule, Routes } from "@angular/router";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { CustomMaterialModule } from "./custom-material/custom-material.module";
+import { InitialPageComponent } from "./initial-page/initial-page.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { TriviaComponent } from "./trivia/trivia.component";
+import { AboutComponent } from "./about/about.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: InitialPageComponent
   },
   {
-    path: 'dashboard',
+    path: "dashboard",
     component: DashboardComponent
   },
   {
-    path: 'trivia',
+    path: "trivia",
     component: TriviaComponent
   },
   {
-    path: 'about',
+    path: "about",
     component: AboutComponent
-  },
-]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -43,9 +44,10 @@ const routes: Routes = [
     BrowserModule,
     CustomMaterialModule,
     RouterModule.forRoot(routes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
