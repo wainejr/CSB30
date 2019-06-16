@@ -16,12 +16,18 @@ def connect():
         print("I am unable to connect to the database.")
     return conn
 
-def get_all_from_table(table_name):
-    conn = connect()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM " + table_name)
-    tuples = cur.fetchall()
-    cur.close()
-    conn.close()
-    return tuples
 
+def fetch_from_query(query_cmd):
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        try:
+            cursor.execute(query_cmd)
+            res = cursor.fetchall()
+            return res
+        except Exception as e:
+            print(e)
+            return []
+    except Exception as e:
+        print(e)
+        return []
