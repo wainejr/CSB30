@@ -47,12 +47,3 @@ def send2db(table, table_name):
     cur.close()
     conn.close()
 
-def get_all_from_table(table_name):
-    conn = connect()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM " + table_name)
-    tuples = cur.fetchall()
-    cur.close()
-    conn.close()
-    return tuples
-
