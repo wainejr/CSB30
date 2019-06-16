@@ -66,6 +66,11 @@ CREATE TABLE band_has_genre
         ON UPDATE CASCADE,
     PRIMARY KEY (id_band, genre_name));
 
+CREATE TABLE genre_in_superset
+    (genre_name TEXT NOT NULL,
+    superset_name TEXT NOT NULL,
+    PRIMARY KEY (genre_name, superset_name));
+
 CREATE TABLE likes_band
     (id_user TEXT NOT NULL,
     id_band TEXT NOT NULL,
