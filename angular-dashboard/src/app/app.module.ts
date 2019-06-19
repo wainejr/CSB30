@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
-import { ChartsModule } from "ng2-charts";
+// import { ChartsModule } from "ng2-charts";
 
 import { AppComponent } from "./app.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -12,6 +12,8 @@ import { InitialPageComponent } from "./initial-page/initial-page.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { TriviaComponent } from "./trivia/trivia.component";
 import { AboutComponent } from "./about/about.component";
+import { DashboardService } from './dashboard.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -38,16 +40,18 @@ const routes: Routes = [
     InitialPageComponent,
     DashboardComponent,
     TriviaComponent,
-    AboutComponent
+    AboutComponent,
+    
   ],
   imports: [
     BrowserModule,
     CustomMaterialModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule,
-    ChartsModule
+    HttpClientModule
+    // ChartsModule
   ],
-  providers: [],
+  providers: [DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

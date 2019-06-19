@@ -1,6 +1,7 @@
 # source bin/activate
 
 from flask import Flask
+from flask_cors import CORS
 from flask import jsonify
 from band_genre_handler import *
 from movie_handler import *
@@ -8,6 +9,7 @@ from user_handler import *
 from bands_handler import *
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 def clamp(n, minn, maxn):
@@ -24,6 +26,11 @@ def prepare_chart_json(quant, labels, data):
             "data": data[0 : clamp(int(quant), 0, len(data) - 1)],
         }
     )
+
+
+# @app.route("/")
+# def serve():
+
 
 
 @app.route("/genres")
