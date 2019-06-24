@@ -1,17 +1,39 @@
-<div>
-  <div
-    style="display: block; background-color: blueviolet"
-    height="2000px"
-    width="2000px"
-  >
-    <!-- <canvas
-      baseChart
-      [datasets]="barChartData"
-      [labels]="barChartLabels"
-      [options]="barChartOptions"
-      [legend]="barChartLegend"
-      [chartType]="barChartType"
-    >
-    </canvas> -->
+<div style="width: 100vw" fxLayout="row" fxLayoutAlign="center start">
+
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    <div fxLayout="column" class="basic-container mat-elevation-z11">
+      <h3>Escolher gráfico:</h3>
+      <mat-select placeholder="Gráfico" name="item" [(ngModel)]="currentPage" (selectionChange)="mudarChart($event)">
+        <mat-option *ngFor="let chart of possibleChart" [value]="chart.url">
+          {{chart.nome}}
+        </mat-option>
+      </mat-select>
+      <h3>Filtros</h3>
+      <mat-form-field>
+        <input matInput placeholder="Filtrar Nome..." value="value">
+      </mat-form-field>
+    </div>
+    
+    <div class="basic-container mat-elevation-z11" 
+      fxLayout="column" 
+      fxLayoutAlign="start center">
+      <h2>{{getChart(currentChart).nome}}</h2>
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        height="400px"
+        width="600px"
+      >
+      </canvas>
+      <div fxLayout="row">
+        <button mat-icon-button (click)="mudaPag(-1)"><mat-icon>navigate_before</mat-icon></button>
+        <p style="margin-bottom: 10px">Página {{page}} de {{maxPage}}</p>
+        <button mat-icon-button (click)="mudaPag(1)"><mat-icon>navigate_next</mat-icon></button>
+      </div>
+    </div>
   </div>
 </div>

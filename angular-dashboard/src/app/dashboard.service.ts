@@ -20,9 +20,18 @@ export class DashboardService {
     window["A_dash"] = this;
   }
 
+  possibleChart = ["count_supergenres", "count_genres_in_supergenres", "most_popular_users", "top_cities", "top_movies", "top_bands"]
 
-  getChart(str): Observable<Object | ChartData> {
-    return this.http.get(this.url + "chart/" + str);
+
+  /**
+   * Available: count_supergenres, count_genres_in_supergenres, most_popular_users, top_cities, top_movies, top_bands
+   * @param choice string of desired chart or index of available charts
+   */
+  getChart(choice: string | number): Observable<Object | ChartData> {
+    return this.http.get(
+      this.url + "chart/" 
+      + (typeof choice === 'number' ? this.possibleChart[choice] : choice)
+    );
   }
 
 

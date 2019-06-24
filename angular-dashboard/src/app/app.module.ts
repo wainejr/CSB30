@@ -1,7 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-// import { ChartsModule } from "ng2-charts";
+import { ChartsModule } from "ng2-charts";
 
 import { AppComponent } from "./app.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -14,6 +15,7 @@ import { TriviaComponent } from "./trivia/trivia.component";
 import { AboutComponent } from "./about/about.component";
 import { DashboardService } from './dashboard.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -45,11 +47,13 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CustomMaterialModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule,
-    HttpClientModule
-    // ChartsModule
+    HttpClientModule,
+    FormsModule,
+    ChartsModule
   ],
   providers: [DashboardService],
   bootstrap: [AppComponent]

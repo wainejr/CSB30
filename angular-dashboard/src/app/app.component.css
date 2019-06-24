@@ -8,6 +8,14 @@
   z-index: -100;
 }
 
+.basic-container {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  background-color: white;
+}
+
 .toolbar-custom-button {
   margin-left: 20px;
 }
