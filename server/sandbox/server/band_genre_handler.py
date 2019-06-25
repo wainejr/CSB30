@@ -1,45 +1,6 @@
 from postgree import *
 
 
-SUPERGENRES = {  # name_super: [words]
-    "rock": ["rock"],
-    "rap": ["rap"],
-    "pop": ["pop"],
-    "hip hop": ["hip hop", "hip-hop", "hiphop"],
-    "metal": ["metal"],
-    "folk": ["folk"],
-    "punk": ["punk"],
-    "indie": ["indie"],
-    "edm": ["edm"],
-    "reggae": ["reggae"],
-    "funk": ["funk"],
-    "soul": ["soul"],
-    "r&b": ["r&b"],
-    "blues": ["blues"],
-    "symphonic": ["symphonic"],
-    "classical": ["classical"],
-    "contemporary": ["contemporary"],
-    "electro": ["electro"],
-    "grunge": ["grunge"],
-    "jazz": ["jazz"],
-    "house": ["house"],
-    "dance": ["dance"],
-    "country": ["country"],
-    "trap": ["trap"],
-    "latin": ["latin"],
-    "trash": ["trash"],
-    "emo": ["emo"],
-    "k-pop": ["k-pop"],
-    "j-pop": ["j-pop"],
-    "mpb": ["mpb"],
-    "sertanejo": ["sertanejo"],
-    "samba": ["samba"],
-    "pagode": ["pagode"],
-    "forro": ["forro"],
-    "bossa nova": ["bossa nova"],
-    "brasileiro": ["brazilian", "brasileiro", "brasileira"],
-}
-
 # return all genres from table band_has_genre
 def get_all_genres():
     query_cmd = "SELECT b.genre_name, COUNT(*) AS Total \
@@ -90,3 +51,37 @@ def get_count_genres_in_supergenres():
         ORDER BY Total DESC;"
 
     return fetch_from_query(query_cmd)
+
+
+# returns bands in both genres
+def genres_intersection(genre_1, genre_2):
+
+    query_cmd = "SELECT DISTINCT B.artistic_name \
+        FROM bands B, band_has_genre BG1, band_has_genre BG2 \
+        WHERE BG1.genre_name = '{}' AND BG2.genre_name = '{}' \
+        AND BG2.id_band = BG1.id_band AND B.id = BG1.id_band \
+        ORDER BY B.artistic_name;".format(
+        genre_1, genre_2
+    )
+
+    return fetch_from_query(query_cmd)
+
+
+# returns bands in both supergenres
+def supergenres_intersection(supergenre_1, supergenre_2):
+
+    query_cmd = "SELECT DISTINCT B.artistic_name \
+        FROM bands B, \
+        band_has_genre BG1, genre_in_superset S1, \
+        band_has_genre BG2, genre_in_superset S2 \
+        WHERE S2.superset_name = '{}' AND S1.superset_name = '{}' AND \
+        BG1.genre_name = S1.genre_name AND BG2.genre_name = S2.genre_name \
+        AND BG2.id_band = BG1.id_band AND B.id = BG1.id_band \
+        ORDER BY B.artistic_name;".format(
+        supergenre_1, supergenre_2
+    )
+
+    return fetch_from_query(query_cmd)
+
+
+print(supergenres_intersection("rock", "k-pop"))
