@@ -118,7 +118,7 @@ def top_bands(quant=None):
     labels = []
     data = []
 
-    for lista in get_most_popular_bands():
+    for lista in get_most_liked_bands():
         labels.append(lista[0])
         data.append(lista[1])
 
