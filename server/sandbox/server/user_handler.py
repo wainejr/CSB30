@@ -1,6 +1,5 @@
 from postgree import *
 
-
 def get_most_popular_users():
     query_cmd = "SELECT U.name, COUNT(*) AS Total\
         FROM friends F, users U \
@@ -36,3 +35,25 @@ def get_common_friends(user_id_1, user_id_2):
 
     return fetch_from_query(query_cmd)
 
+
+# return level of relationship from one person to all others
+def get_realtionship_lvl(user_id):
+    query_cmd = "WITH RECURSIVE Conhece AS\
+        (\
+            SELECT id_user_2 AS id2, 0 AS nivel\
+            FROM Friends\
+            WHERE id_user_1 = '{}'\
+            \
+            UNION ALL\
+            \
+            SELECT DISTINCT F.id_user_2, Conhece.nivel + 1\
+            FROM Conhece, Friends F\
+            WHERE Conhece.id2 = F.id_user_1\
+                AND F.id_user_2 != '{}' \
+                AND Conhece.nivel < 2 \
+        )\
+        SELECT id2, MIN(nivel) FROM Conhece \
+        GROUP BY id2 \
+        ORDER BY MIN(nivel);".format(user_id, user_id)
+
+    return fetch_from_query(query_cmd)
