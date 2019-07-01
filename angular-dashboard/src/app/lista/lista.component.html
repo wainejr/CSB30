@@ -1,0 +1,37 @@
+<div style="width: 100vw" fxLayout="row" fxLayoutAlign="center start">
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+
+      <div fxLayout="column" class="basic-container mat-elevation-z11">
+        <h3>Tipo de Lista</h3>
+        <mat-select placeholder="Tipo de mostragem"[(ngModel)]="tipoMostrando" (selectionChange)="mudarLista($event)">
+          <mat-option value="pessoas">Pessoas</mat-option>
+          <mat-option value="filmes">Filmes</mat-option>
+          <mat-option value="bandas">Bandas</mat-option>
+        </mat-select>
+      </div>
+
+
+      <div class="basic-container mat-elevation-z11" fxLayoutGap="10px"
+        >
+        <span *ngIf="tipoMostrando == 'pessoas'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+          <div class="user-container mat-elevation-z6" *ngFor="let user of users">
+            {{user.name}}
+          </div>
+        </span>
+
+        <span *ngIf="tipoMostrando == 'filmes'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+          <div class="user-container mat-elevation-z6" *ngFor="let mov of movies">
+            {{mov}}
+          </div>
+        </span>
+
+        <span *ngIf="tipoMostrando == 'bandas'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+          <div class="user-container mat-elevation-z6" *ngFor="let ban of bands">
+            {{ban}}
+          </div>
+        </span>
+
+      </div>
+
+  </div>
+</div>

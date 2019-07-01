@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="background"></div>
 <div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-  <mat-toolbar color="primary" fxLayout="row" fxLayoutGap="30px">
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutGap="30px" style="position: fixed; top: 0;right: 0; left: 0;">
     <button mat-flat-button color="primary" routerLink="/">
       <h6>vaTapaueR</h6>
     </button>
@@ -13,10 +13,13 @@
       <button mat-flat-button color="primary" routerLink="trivia">
         Trivia
       </button>
+      <button mat-flat-button color="primary" routerLink="lista">
+        Listas
+      </button>
       <button mat-flat-button color="primary" routerLink="about">Sobre</button>
     </div>
   </mat-toolbar>
-  <div fxLayout="row" fxLayoutAlign="space-between start" style.width="100%">
+  <div fxLayout="row" fxLayoutAlign="space-between start" style.width="100%" style="padding-top: 12vh;margin-bottom 5vh;">
     <span>
       <router-outlet></router-outlet>
     </span>

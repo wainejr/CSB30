@@ -5,3 +5,8 @@
   padding-bottom: 3vh;
   background-color: white;
 }
+
+.list-container {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}

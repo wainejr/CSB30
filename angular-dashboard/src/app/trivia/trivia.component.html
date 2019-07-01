@@ -1,3 +1,56 @@
-<p>
-  trivia works!
-</p>
+<div style="width: 100vw" fxLayout="row" fxLayoutAlign="center start">
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+
+    <!-- <div fxLayout="column" class="basic-container mat-elevation-z11">
+      <h3>Informação a ser visualizada</h3>
+      <mat-select placeholder="Tipo de mostragem"[(ngModel)]="tipoMostrando" (selectionChange)="mudarChart($event)">
+        <mat-option value="pessoas">Pessoas</mat-option>
+        <mat-option value="filmes">Filmes</mat-option>
+        <mat-option value="bandas">Bandas</mat-option>
+      </mat-select>
+    </div> -->
+
+    <div fxLayout="column" class="basic-container mat-elevation-z11" fxLayoutAlign="start center">
+
+      <h2>Distância entre dois usuários</h2>
+      
+      <span fxLayout="row" fxLayoutGap="50px">
+
+        <mat-select
+          style="min-width: 180px;"
+          placeholder="usuário 1" name="item"
+          [(ngModel)]="user1">
+          <mat-option *ngFor="let user of users" [value]="user">
+              {{user.name}}
+          </mat-option>
+        </mat-select>
+
+        <mat-icon>close</mat-icon>
+
+        <mat-select
+          style="min-width: 180px;"
+          placeholder="usuário 2" name="item"
+          [(ngModel)]="user2">
+          <mat-option *ngFor="let user of users" [value]="user">
+            {{user.name}}
+          </mat-option>
+        </mat-select>
+
+        <div>
+          <button mat-flat-button (click)="calculateDistance()" color="primary">Calcular</button>
+        </div>
+      </span>
+
+      <span *ngIf="calculatedDistance">
+        A distancia calculada entre o {{user1.name}} e o {{user2.name}} é {{distance}}
+      </span>
+
+
+      <h2>Ano de lançamento preferido da turma</h2>
+        
+      <h2>Amigos em comum entre dois usuários</h2>
+
+    </div>
+  
+  </div>
+</div>

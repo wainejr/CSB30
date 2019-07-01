@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   ]
 
   currentChart = "top_bands";
+  currentPage = "top_bands";
   currentData: any[];
   currentLabels: any[];
   viewData: any[];
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
 
   dataNum: number = 20;
   page: number = 0;
-  maxPage
+  maxPage;
+  tipoMostrando: string = 'chart';
 
 
   constructor(
@@ -36,6 +38,7 @@ export class DashboardComponent implements OnInit {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true,
+    
     scales: {
       yAxes: [
         {
@@ -76,7 +79,7 @@ export class DashboardComponent implements OnInit {
     this.viewLabels = this.currentLabels.slice(this.page*this.dataNum, (this.page+1)*this.dataNum);
     this.barChartLabels = this.viewLabels;
     let chartInfo = this.getChart(this.currentChart);
-    this.barChartData = [{data: this.viewData, label: chartInfo["labelName"]}];
+    this.barChartData = [{data: this.viewData, label: chartInfo["labelName"], backgroundColor: "#673ab7",}];
 
   }
 

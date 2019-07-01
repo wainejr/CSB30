@@ -1,0 +1,16 @@
+.basic-container {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    background-color: white;
+}
+
+.user-container {
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: larger;
+    font-weight: bold;
+}

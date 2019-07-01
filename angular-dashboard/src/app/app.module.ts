@@ -14,8 +14,10 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { TriviaComponent } from "./trivia/trivia.component";
 import { AboutComponent } from "./about/about.component";
 import { DashboardService } from './dashboard.service';
+import { CommService } from './comm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ListaComponent } from './lista/lista.component';
 
 const routes: Routes = [
   {
@@ -33,7 +35,12 @@ const routes: Routes = [
   {
     path: "about",
     component: AboutComponent
-  }
+  },
+  {
+    path: "lista",
+    component: ListaComponent
+  },
+  
 ];
 
 @NgModule({
@@ -43,6 +50,7 @@ const routes: Routes = [
     DashboardComponent,
     TriviaComponent,
     AboutComponent,
+    ListaComponent,
     
   ],
   imports: [
@@ -55,7 +63,7 @@ const routes: Routes = [
     FormsModule,
     ChartsModule
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, CommService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

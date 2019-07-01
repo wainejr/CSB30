@@ -2,22 +2,31 @@
 
   <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
     <div fxLayout="column" class="basic-container mat-elevation-z11">
-      <h3>Escolher gráfico:</h3>
-      <mat-select placeholder="Gráfico" name="item" [(ngModel)]="currentPage" (selectionChange)="mudarChart($event)">
+      <h3>Tipo de Visualização</h3>
+      <mat-select placeholder="Tipo de mostragem"[(ngModel)]="tipoMostrando" (selectionChange)="mudarChart($event)">
+        <mat-option value="chart">Gráfico</mat-option>
+        <mat-option value="lista">Lista</mat-option>
+      </mat-select>
+      <h3>Escolher informação:</h3>
+      <mat-select 
+        placeholder="Gráfico" name="item"
+        [(ngModel)]="currentPage" 
+        (selectionChange)="mudarChart($event)">
         <mat-option *ngFor="let chart of possibleChart" [value]="chart.url">
           {{chart.nome}}
         </mat-option>
       </mat-select>
       <h3>Filtros</h3>
       <mat-form-field>
-        <input matInput placeholder="Filtrar Nome..." value="value">
+        <input matInput placeholder="Filtrar Nome..." [(ngModel)]="filterName">
       </mat-form-field>
     </div>
     
     <div class="basic-container mat-elevation-z11" 
       fxLayout="column" 
-      fxLayoutAlign="start center">
-      <h2>{{getChart(currentChart).nome}}</h2>
+      fxLayoutAlign="start center"
+      *ngIf="tipoMostrando == 'chart'">
+      <h2>{{getChart(currentPage).nome}}</h2>
       <canvas
         baseChart
         [datasets]="barChartData"
@@ -35,5 +44,21 @@
         <button mat-icon-button (click)="mudaPag(1)"><mat-icon>navigate_next</mat-icon></button>
       </div>
     </div>
+
+    <div class="basic-container list-container mat-elevation-z11" 
+      fxLayout="column" 
+      fxLayoutAlign="center center"
+      *ngIf="tipoMostrando == 'lista'">
+
+      <div fxLayout="column">
+        <div *ngFor="let data of currentLabels.slice(0, 10); let i = index;">
+          <strong [ngStyle]="{'font-size': i === 0 ? 'xx-large' : 'x-large'}">
+            {{i + 1}}.{{data}}
+          </strong>
+        </div>
+      </div>
+    
+    </div>
+
   </div>
 </div>
