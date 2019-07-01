@@ -324,5 +324,31 @@ def all_directors():
 
     return jsonify(directors)
 
+
+# retorna todos os nomes dos filmes
+# formato de lista ex: ["Inception", "Piratas do caribe"]
+@app.route("/list/movies")
+def all_movies():
+    movies = []
+
+    print(get_all_movies())
+    for movie in get_all_movies():
+        movies.append(movie[0].split(",")[0])
+
+    return jsonify(movies)   
+
+
+# retorna todos os nomes das bandas
+# formato de lista ex: ["Strokes", "Red Hot"]
+@app.route("/list/bands")
+def all_bands():
+    bands = []
+
+    for band in get_all_bands():
+        bands.append(band[0])
+
+    return jsonify(bands)    
+
+
 if __name__ == "__main__":
     app.run(debug=True)

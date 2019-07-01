@@ -11,6 +11,16 @@ def get_most_liked_bands():
     return fetch_from_query(query_cmd)
 
 
+
+# return all bands
+def get_all_bands():
+    query_cmd = "SELECT B.artistic_name \
+        FROM bands B \
+        GROUP BY B.artistic_name \
+        ORDER BY B.artistic_name;"
+    return fetch_from_query(query_cmd)
+
+
 def get_most_followed_bands():
     query_cmd = "SELECT B.artistic_name AS Nome, c as Followers, \
             B.popularity AS Popularidade\

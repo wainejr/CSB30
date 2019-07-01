@@ -40,6 +40,15 @@ def get_all_directors():
     return fetch_from_query(query_cmd)
 
 
+# return all movies
+def get_all_movies():
+    query_cmd = "SELECT M.title \
+        FROM movies M \
+        GROUP BY M.title \
+        ORDER BY M.title;"
+    return fetch_from_query(query_cmd)
+
+
 # return the average rating of the movies in a year and the total of movies
 def get_movies_likes_by_date():
     query_cmd = "SELECT date_part('year', M.release_date) AS Year, AVG(LM.rating) AS Rating, COUNT(*) AS Total \
