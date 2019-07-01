@@ -10,7 +10,7 @@ def get_most_popular_users():
     return fetch_from_query(query_cmd)
 
 
-def get_name_id():
+def get_all_users_name_and_id():
     query_cmd = "SELECT U.id, U.name\
         FROM users U;"
 
@@ -52,8 +52,9 @@ def get_realtionship_lvl(user_id):
                 AND F.id_user_2 != '{}' \
                 AND Conhece.nivel < 2 \
         )\
-        SELECT id2, MIN(nivel) FROM Conhece \
-        GROUP BY id2 \
+        SELECT U.name, MIN(nivel) FROM Conhece, Users U\
+        WHERE U.id = Conhece.id2\
+        GROUP BY U.name  \
         ORDER BY MIN(nivel);".format(user_id, user_id)
 
     return fetch_from_query(query_cmd)

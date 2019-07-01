@@ -35,5 +35,5 @@ def get_likes_bands():
         FROM likes_band LB, bands B \
         WHERE LB.id_band = B.id \
         GROUP BY B.artistic_name \
-        ORDER BY Total DESC;"
+        ORDER BY Rating DESC;"
     return fetch_from_query(query_cmd)
