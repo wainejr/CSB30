@@ -7,6 +7,7 @@ from band_genre_handler import *
 from movie_handler import *
 from user_handler import *
 from bands_handler import *
+from collections import defaultdict
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -216,32 +217,29 @@ def lvl(user_id):
     return jsonify(retorno)
 
 
-# retorna todos a quantidade de likes e o rating medio dos filmes de cada ano
+# retorna todos a quantidade de likes dos filmes de cada ano
 # formato de objeto: 
 # {
-#   "labels": [2002, 2003],
-#     "data": {
-#         "data_1": [4, 5], # rating medio
-#         "data_2": [13, 17], # quantidade de likes
-#     }
+#   "2000s": 65, 
+#   "2010s": 61, 
+#   "30s": 1, 
+#   "50s": 1, 
+#   "60s": 6, 
+#   "70s": 24, 
+#   "80s": 23, 
+#   "90s": 68
 # }
-@app.route("/3_data/likes_per_year_and_rating")
-def likes_per_year():
-    labels = []
-    data = {
-        "data_1": [],
-        "data_2": [],
-    }
+@app.route("/most_popular_decades")
+def decades():
+    decadas = defaultdict(int)
+    
+    for ano in get_movies_likes_by_date():
+        if str(int(ano[0]/10))[:-1] == "19":
+            decadas[str(int(ano[0]/10))[-1] + "0s"] += ano[2]
+        else:
+            decadas[str(int(ano[0]/10)) + "0s"] += ano[2]
 
-    for lista in get_movies_likes_by_date():
-        labels.append(lista[0])
-        data["data_1"].append(lista[1])
-        data["data_2"].append(lista[2])
-
-    return jsonify({
-        "labels": labels,
-        "data": data
-    })
+    return jsonify(decadas)
 
 
 # ------------------------------------------------------------ #
