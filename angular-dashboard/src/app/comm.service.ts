@@ -33,4 +33,14 @@ export class CommService {
   getMovies(): Observable<any> {
     return this.http.get(this.url + 'list/movies');
   }
+
+  getCommomFriends(user1Id, user2Id): Observable<any> {
+    return this.http.get(this.url + "list/common_friends/" + user1Id + "&&" + user2Id);
+  }
+
+  yearRating() {
+    this.http.get(this.url + "3_data/likes_per_year_and_rating").subscribe(d => {
+      console.log(d);
+    })
+  }
 }

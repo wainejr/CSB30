@@ -13,19 +13,19 @@
 
       <div class="basic-container mat-elevation-z11" fxLayoutGap="10px"
         >
-        <span *ngIf="tipoMostrando == 'pessoas'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+        <span *ngIf="tipoMostrando == 'pessoas'" style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;">
           <div class="user-container mat-elevation-z6" *ngFor="let user of users">
             {{user.name}}
           </div>
         </span>
 
-        <span *ngIf="tipoMostrando == 'filmes'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+        <span *ngIf="tipoMostrando == 'filmes'" style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;">
           <div class="user-container mat-elevation-z6" *ngFor="let mov of movies">
             {{mov}}
           </div>
         </span>
 
-        <span *ngIf="tipoMostrando == 'bandas'" style="display: flex; flex-wrap: wrap; max-width: 70vw;">
+        <span *ngIf="tipoMostrando == 'bandas'" style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;">
           <div class="user-container mat-elevation-z6" *ngFor="let ban of bands">
             {{ban}}
           </div>

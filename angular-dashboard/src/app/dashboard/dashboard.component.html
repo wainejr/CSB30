@@ -51,11 +51,22 @@
       *ngIf="tipoMostrando == 'lista'">
 
       <div fxLayout="column">
-        <div *ngFor="let data of currentLabels.slice(0, 10); let i = index;">
-          <strong [ngStyle]="{'font-size': i === 0 ? 'xx-large' : 'x-large'}">
-            {{i + 1}}.{{data}}
+        <!-- <div *ngFor="let data of currentLabels.slice(0, 10); let i = index;">
+          <strong [ngStyle]="{'font-size': i === 0 ? 'xx-large' : 'x-large'}"> -->
+              <table matSort>
+                <tr>
+                  <th mat-sort-header="name">Nome</th>
+                  <th mat-sort-header="info">{{getChart(currentPage).labelInfo}}</th>
+                </tr>
+              
+                <tr *ngFor="let data of currentLabels.slice(0, 10); let i = index;">
+                  <td>{{i + 1}}.{{data}}</td>
+                  <td>{{currentData[i]}}</td>
+                </tr>
+              </table>
+            <!-- {{i + 1}}.{{data}} - {{currentData[i]}}
           </strong>
-        </div>
+        </div> -->
       </div>
     
     </div>

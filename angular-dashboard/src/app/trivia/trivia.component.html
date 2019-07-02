@@ -50,6 +50,45 @@
         
       <h2>Amigos em comum entre dois usuários</h2>
 
+      <span fxLayout="row" fxLayoutGap="50px">
+
+        <mat-select
+          style="min-width: 180px;"
+          placeholder="usuário 1" name="item"
+          [(ngModel)]="user1Friend">
+          <mat-option *ngFor="let user of users" [value]="user">
+              {{user.name}}
+          </mat-option>
+        </mat-select>
+
+        <mat-icon>close</mat-icon>
+
+        <mat-select
+          style="min-width: 180px;"
+          placeholder="usuário 2" name="item"
+          [(ngModel)]="user2Friend">
+          <mat-option *ngFor="let user of users" [value]="user">
+            {{user.name}}
+          </mat-option>
+        </mat-select>
+
+        <div>
+          <button mat-flat-button (click)="getCommonFriends()" color="primary">Mostrar</button>
+        </div>
+      </span>
+
+      <span *ngIf="commonFriends && friends.length == 0">
+        Esses usuários não possuem amigos em comum
+      </span>
+      <span *ngIf="commonFriends && friends.length > 0">
+        Os amigos em comum desses usuários são:
+      </span>
+      <span *ngIf="commonFriends && friends.length > 0" style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;">
+        <div class="user-container mat-elevation-z6" *ngFor="let friend of friends">
+          {{friend}}
+        </div>
+      </span>
+
     </div>
   
   </div>
