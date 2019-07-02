@@ -1,0 +1,13 @@
+.logo-container {
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+}
+
+.basic-container {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  background-color: white;
+}

@@ -24,8 +24,25 @@ export class DashboardComponent implements OnInit {
   currentPage = "top_bands";
   currentData: any[];
   currentLabels: any[];
+  allData: any[];
+  allLabels: any[];
   viewData: any[];
   viewLabels: any[];
+
+  filterName: string;
+  tipoFiltro: string = 'contem';
+  funcoesFiltro: Object = {
+    "contem" : function(val: string, base: string): boolean {
+      return base.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    },
+    "comeca" : function(val: string, base: string): boolean {
+      return base.toLowerCase().indexOf(val.toLowerCase()) == 0;
+    },
+    "termina" : function(val: string, base: string): boolean {
+      return base.toLowerCase().lastIndexOf(val.toLowerCase()) == base.length - val.length;
+    },
+  }
+  filtro: ((val: string, base: string)=>boolean) = this.funcoesFiltro[this.tipoFiltro];
 
   dataNum: number = 20;
   page: number = 0;
@@ -51,25 +68,16 @@ export class DashboardComponent implements OnInit {
       ]
     }
   };
-  public barChartLabels: Label[] = [
-    "2006",
-    "2007",
-    "2008",
-    "2009",
-    "2010",
-    "2011",
-    "2012"
-  ];
+  public barChartLabels: Label[] = [];
   public barChartType = "bar";
   public barChartLegend = true;
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: "Series A" },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: "Series B" }
-  ];
+  public barChartData: ChartDataSets[] = [];
 
   ngOnInit() {
 
     this.dash.getChart(this.currentChart).subscribe(data=> {
+      this.allData = data["data"];
+      this.allLabels = data["labels"];
       this.currentData = data["data"];
       this.currentLabels = data["labels"];
       this.maxPage = Math.floor(this.currentData.length/this.dataNum);
@@ -81,7 +89,12 @@ export class DashboardComponent implements OnInit {
     this.viewLabels = this.currentLabels.slice(this.page*this.dataNum, (this.page+1)*this.dataNum);
     this.barChartLabels = this.viewLabels;
     let chartInfo = this.getChart(this.currentChart);
-    this.barChartData = [{data: this.viewData, label: chartInfo["labelName"], backgroundColor: "#673ab7",}];
+    this.barChartData = [{
+      data: this.viewData, 
+      label: chartInfo["label"],
+      backgroundColor: "#673ab7",
+      hoverBackgroundColor: "#482d77"
+    }];
 
   }
 
@@ -90,7 +103,6 @@ export class DashboardComponent implements OnInit {
   }
 
   mudaPag(addToPage) {
-    console.log(this.page);
     this.page += addToPage;
     if(this.page < 0) this.page = 0;
     if(this.page > this.maxPage) this.page = this.maxPage;
@@ -106,5 +118,30 @@ export class DashboardComponent implements OnInit {
       this.maxPage = Math.floor(this.currentData.length/this.dataNum);
       this.updateData()
     })
+  }
+
+  mudaFiltro(event?) {
+    if(event) {
+      this.filtro = this.funcoesFiltro[this.tipoFiltro];
+    }
+    if(this.filterName)
+      this.filtra()
+    else {
+      this.currentData = this.allData.slice();
+      this.currentLabels = this.allLabels.slice();
+    }
+  }
+
+  filtra() {
+    this.currentData = []
+    this.currentLabels = this.allLabels.filter((base, index) => {
+      let result = this.filtro(this.filterName, base);
+      if(result) this.currentData.push(this.allData[index]);
+      return result;
+    });
+    this.maxPage = Math.floor(this.currentData.length/this.dataNum);
+    this.page = 0;
+    this.updateData();
+
   }
 }

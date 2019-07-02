@@ -24,7 +24,6 @@ export class TriviaComponent implements OnInit {
 
     this.comm.getUsers().subscribe(u => {
       this.users = u["users"];
-      console.log("users:", this.users);
     });
 
     
