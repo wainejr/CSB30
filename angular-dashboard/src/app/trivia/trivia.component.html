@@ -46,7 +46,6 @@
       </span>
 
 
-      <!-- <h2>Ano de lançamento preferido da turma</h2> -->
         
       <h2>Amigos em comum entre dois usuários</h2>
 
@@ -87,6 +86,16 @@
         <div class="user-container mat-elevation-z6" *ngFor="let friend of friends">
           {{friend}}
         </div>
+      </span>
+
+      <h2>Curtidas em filmes por decada</h2>
+
+      <span fxLayout="row" *ngIf="decLancamento" fxLayoutGap="20px">
+        <p *ngFor="let item of decadas" 
+          style="padding-left: 5px;padding-right: 5px; border-radius: 5px; font-size: 12px;" class="mat-elevation-z2">
+          {{item['decada']}} - {{item['likes']}} curtidas
+      </p>
+
       </span>
 
     </div>

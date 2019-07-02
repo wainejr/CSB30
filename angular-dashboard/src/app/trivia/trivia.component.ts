@@ -18,6 +18,10 @@ export class TriviaComponent implements OnInit {
   commonFriends: boolean = false;
   friends: string[];
 
+
+  decadas: any[] = [];
+  decLancamento: boolean = false;
+
   constructor(public comm: CommService) { }
 
   ngOnInit() {
@@ -26,6 +30,17 @@ export class TriviaComponent implements OnInit {
       this.users = u["users"];
     });
 
+    this.comm.yearRating().subscribe(data => {
+      console.log(data);
+      Object.keys(data).forEach(k=>{
+        this.decadas.push({decada: k, likes: data[k]});
+      })
+      let el = this.decadas.shift();
+      this.decadas.push(el);
+      el = this.decadas.shift();
+      this.decadas.push(el);
+      this.decLancamento = true;
+    })
     
 
     
