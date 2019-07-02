@@ -10,12 +10,14 @@ import { ChartDataSets } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
   possibleChart = [
-    {url: "count_supergenres", nome: "Super generos", labelName: "Super Gêneros"},
-    {url: "count_genres_in_supergenres", nome: "Generos em super generos ", labelName: "Gêneros"},
-    {url: "most_popular_users", nome: "Usuários mais populares", labelName: "Usuários"},
-    {url: "top_cities", nome: "Cidades mais populares", labelName: "Cidades"},
-    {url: "top_movies", nome: "Filmes mais populares", labelName: "Filmes"},
-    {url: "top_bands", nome: "Bandas mais populares", labelName: "Banda"}
+    {url: "count_supergenres", nome: "Super generos", labelName: "Super Gêneros", labelInfo: "Gêneros"},
+    {url: "count_genres_in_supergenres", nome: "Generos em super generos ", labelInfo: "Gêneros"},
+    {url: "most_popular_users", nome: "Usuários mais populares", labelName: "Usuários", labelInfo: "amigos"},
+    {url: "top_cities", nome: "Cidades mais populares", labelName: "Cidades", labelInfo: "Pessoas na sala"},
+    {url: "top_movies", nome: "Filmes mais populares", labelName: "Filmes", labelInfo: "Curtidas"},
+    {url: "top_bands", nome: "Bandas mais populares", labelName: "Bandas", labelInfo: "Curtidas"},
+    {url: "followers_by_band", nome: "Bandas mais seguidas", labelName: "Bandas", labelInfo: "Seguidores"},
+    {url: "bands_rating", nome: "Notas das Bandas", labelName: "Bandas", labelInfo: "Nota"},
   ]
 
   currentChart = "top_bands";

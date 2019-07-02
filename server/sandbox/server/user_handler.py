@@ -50,11 +50,11 @@ def get_realtionship_lvl(user_id):
             FROM Conhece, Friends F\
             WHERE Conhece.id2 = F.id_user_1\
                 AND F.id_user_2 != '{}' \
-                AND Conhece.nivel < 2 \
+                AND Conhece.nivel < 6 \
         )\
-        SELECT U.name, MIN(nivel) FROM Conhece, Users U\
-        WHERE U.id = Conhece.id2\
-        GROUP BY U.name  \
-        ORDER BY MIN(nivel);".format(user_id, user_id)
+        SELECT U.name, MIN(nivel) FROM Conhece, Friends F, Users U \
+        WHERE U.id = Conhece.id2 AND (nivel != 0 OR (F.id_user_1 = '{}' AND F.id_user_2 = Conhece.id2)) \
+        GROUP BY U.name \
+        ORDER BY MIN(nivel);".format(user_id, user_id, user_id)
 
     return fetch_from_query(query_cmd)
