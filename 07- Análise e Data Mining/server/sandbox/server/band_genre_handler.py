@@ -12,7 +12,9 @@ def get_all_genres():
 
 # returns the genre_in_supergenre table
 def get_supergenres_table():
-    query_cmd = "SELECT * FROM genre_in_superset;"
+    query_cmd = "SELECT *  \
+    FROM genre_in_superset G\
+    ORDER BY G.superset_name;"
 
     return fetch_from_query(query_cmd)
 

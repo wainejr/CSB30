@@ -1,6 +1,9 @@
-<div style="position: absolute; left: 0; right: 0;" fxLayout="row" fxLayoutAlign="center start">
+<div
+  style="position: absolute; left: 0; right: 0;"
+  fxLayout="row"
+  fxLayoutAlign="center start"
+>
   <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-
     <!-- <div fxLayout="column" class="basic-container mat-elevation-z11">
       <h3>Informação a ser visualizada</h3>
       <mat-select placeholder="Tipo de mostragem"[(ngModel)]="tipoMostrando" (selectionChange)="mudarChart($event)">
@@ -10,18 +13,22 @@
       </mat-select>
     </div> -->
 
-    <div fxLayout="column" class="basic-container mat-elevation-z11" fxLayoutAlign="start center">
-
+    <div
+      fxLayout="column"
+      class="basic-container mat-elevation-z11"
+      fxLayoutAlign="start center"
+    >
       <h2>Distância entre dois usuários</h2>
-      
-      <span fxLayout="row" fxLayoutGap="50px">
 
+      <span fxLayout="row" fxLayoutGap="50px">
         <mat-select
           style="min-width: 180px;"
-          placeholder="usuário 1" name="item"
-          [(ngModel)]="user1">
+          placeholder="usuário 1"
+          name="item"
+          [(ngModel)]="user1"
+        >
           <mat-option *ngFor="let user of users" [value]="user">
-              {{user.name}}
+            {{ user.name }}
           </mat-option>
         </mat-select>
 
@@ -29,34 +36,37 @@
 
         <mat-select
           style="min-width: 180px;"
-          placeholder="usuário 2" name="item"
-          [(ngModel)]="user2">
+          placeholder="usuário 2"
+          name="item"
+          [(ngModel)]="user2"
+        >
           <mat-option *ngFor="let user of users" [value]="user">
-            {{user.name}}
+            {{ user.name }}
           </mat-option>
         </mat-select>
 
         <div>
-          <button mat-flat-button (click)="calculateDistance()" color="primary">Calcular</button>
+          <button mat-flat-button (click)="calculateDistance()" color="primary">
+            Calcular
+          </button>
         </div>
       </span>
 
       <span *ngIf="calculatedDistance">
-        A distancia calculada entre o {{user1.name}} e o {{user2.name}} é {{distance}}
+        A distância entre {{ user1.name }} e {{ user2.name }} é {{ distance }}
       </span>
 
-
-        
       <h2>Amigos em comum entre dois usuários</h2>
 
       <span fxLayout="row" fxLayoutGap="50px">
-
         <mat-select
           style="min-width: 180px;"
-          placeholder="usuário 1" name="item"
-          [(ngModel)]="user1Friend">
+          placeholder="usuário 1"
+          name="item"
+          [(ngModel)]="user1Friend"
+        >
           <mat-option *ngFor="let user of users" [value]="user">
-              {{user.name}}
+            {{ user.name }}
           </mat-option>
         </mat-select>
 
@@ -64,15 +74,19 @@
 
         <mat-select
           style="min-width: 180px;"
-          placeholder="usuário 2" name="item"
-          [(ngModel)]="user2Friend">
+          placeholder="usuário 2"
+          name="item"
+          [(ngModel)]="user2Friend"
+        >
           <mat-option *ngFor="let user of users" [value]="user">
-            {{user.name}}
+            {{ user.name }}
           </mat-option>
         </mat-select>
 
         <div>
-          <button mat-flat-button (click)="getCommonFriends()" color="primary">Mostrar</button>
+          <button mat-flat-button (click)="getCommonFriends()" color="primary">
+            Mostrar
+          </button>
         </div>
       </span>
 
@@ -82,23 +96,29 @@
       <span *ngIf="commonFriends && friends.length > 0">
         Os amigos em comum desses usuários são:
       </span>
-      <span *ngIf="commonFriends && friends.length > 0" style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;">
-        <div class="user-container mat-elevation-z6" *ngFor="let friend of friends">
-          {{friend}}
+      <span
+        *ngIf="commonFriends && friends.length > 0"
+        style="display: flex; flex-wrap: wrap; max-width: 70vw; justify-content: center;"
+      >
+        <div
+          class="user-container mat-elevation-z6"
+          *ngFor="let friend of friends"
+        >
+          {{ friend }}
         </div>
       </span>
 
       <h2>Curtidas em filmes por decada</h2>
 
       <span fxLayout="row" *ngIf="decLancamento" fxLayoutGap="20px">
-        <p *ngFor="let item of decadas" 
-          style="padding-left: 5px;padding-right: 5px; border-radius: 5px; font-size: 12px;" class="mat-elevation-z2">
-          {{item['decada']}} - {{item['likes']}} curtidas
-      </p>
-
+        <p
+          *ngFor="let item of decadas"
+          style="padding-left: 5px;padding-right: 5px; border-radius: 5px; font-size: 12px;"
+          class="mat-elevation-z2"
+        >
+          {{ item["decada"] }} - {{ item["likes"] }} curtidas
+        </p>
       </span>
-
     </div>
-  
   </div>
 </div>

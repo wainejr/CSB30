@@ -120,7 +120,7 @@ def top_movies(quant=None):
 
     for lista in get_most_liked_movies():
         labels.append(lista[0])
-        data.append(lista[1])
+        data.append(round(float(lista[1]), 2))
 
     return prepare_chart_json(quant, labels, data)
 

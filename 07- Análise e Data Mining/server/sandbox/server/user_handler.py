@@ -12,7 +12,8 @@ def get_most_popular_users():
 
 def get_all_users_name_and_id():
     query_cmd = "SELECT U.id, U.name\
-        FROM users U;"
+        FROM users U \
+        ORDER BY U.name;"
 
     return fetch_from_query(query_cmd)
 
