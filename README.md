@@ -1,11 +1,13 @@
-# Estrutura básica do trabalho de CSB30 - Introdução A Bancos De Dados
+Pastas:
+  database: 
+    - Arquivos relacionados à obtenção e inserção de dados no banco de dados 
 
-## Integrantes do grupo
+  server/sandbox/server:
+    - Arquivos relacionados à consultas ao banco de dados e rotas
 
-- Giovanni Forastieri, 1904990, @NEOGIGIO
-- Ian Douglas Almeida Queros, 1905015, @ianqueros
-- Waine Barbosa de Oliveira Junior, 1905120, @jr_waine
+  client:
+    - Arquivos relacionados ao projeto do Angular (template gerado com 
+    "ng new client")
 
-## Descrição da aplicação a ser desenvolvida 
-
-Descreva aqui uma visão geral da aplicação que será desenvolvida pelo grupo durante o semestre. **Este texto deverá ser escrito quando requisitado pelo professor.** O conteúdo vai evoluir à medida em que o grupo avança com a implementação.
+  client/src/app:
+    - Arquivos relacionados à implementação do site em Angular
