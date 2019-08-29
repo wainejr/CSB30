@@ -13,7 +13,7 @@ A Python-powered RESTful API built from scratch using Flask. Serves the front-en
 ## Client side
 An Angular app built with TypeScript powers up the front-end. Using Chart.js we were able to show data in a beautiful and responsive way.
 
-## Info shown
+## What can be found in the app?
 #### Most popular:
 1. Music genres
 1. Movie genres
@@ -30,13 +30,13 @@ An Angular app built with TypeScript powers up the front-end. Using Chart.js we 
 
 ## Folder structure
 #### database/
-    - Files related to obtain and insert data in database. 
+    Files related to obtain and insert data in database. 
 
 #### server/sandbox/server/
-    - Files related to database queries and routes.
+    Files related to database queries and routes.
 
 #### client/src/app/
-    - Files related to Angular website.
+    Files related to Angular website.
     
 ## Members
 * Giovanni Forastieri, @NEOGIGIO
